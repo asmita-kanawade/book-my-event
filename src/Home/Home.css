@@ -1,0 +1,9 @@
+.featured-events-container{
+    margin: 30px;
+    /* padding-top: 20px; */
+}
+.featured-events-heading{
+    background-color: #ccc;
+    color: black;
+    padding: 15px
+}

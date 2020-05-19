@@ -1,0 +1,13 @@
+.favFilledIcon,.favUnfilledIcon{
+    position: absolute;
+    right: 270px;
+    bottom: 6px;   
+    cursor: pointer; 
+}
+.card-content{
+    text-align: left;
+}
+.title{
+font-size: 16px;
+font-family: Georgia, 'Times New Roman', Times, serif;
+}
