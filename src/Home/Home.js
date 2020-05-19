@@ -25,7 +25,8 @@ export default class Home extends React.Component {
 
     componentWillMount() {
 
-        Axios.post(`http://localhost:3002/api/search-event`)
+       // Axios.post(`http://localhost:3002/api/search-event`)
+        Axios.post(`https://book-my-events.herokuapp.com/api/search-event`)
             .then(res => {
                 this.setState({ events: res.data });
                 console.log(`[Home.js] events: ${this.state.events.length}`);

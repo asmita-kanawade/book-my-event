@@ -22,7 +22,8 @@ export default class BookedEvents extends Component {
 
     Axios({
       method: `POST`,
-      url: `http://localhost:3002/search-booked-events`,
+     // url: `http://localhost:3002/search-booked-events`,
+      url: `https://book-my-events.herokuapp.com/search-booked-events`,
       headers: {
         authorization: sessionStorage.getItem('token')
       }

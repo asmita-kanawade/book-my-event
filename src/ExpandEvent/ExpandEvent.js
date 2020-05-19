@@ -29,7 +29,8 @@ class ExpandEvent extends Component {
     if (token) {
       Axios({
         method: `POST`,
-        url: `http://localhost:3002/book-event`,
+       // url: `http://localhost:3002/book-event`,
+        url: `https://book-my-events.herokuapp.com/book-event`,
         data: event,
         headers: {
           authorization: token

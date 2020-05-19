@@ -87,7 +87,8 @@ class AddNewEvent extends Component {
 
         Axios({
             method: `POST`,
-            url: `http://localhost:3002/add-event`,
+           // url: `http://localhost:3002/add-event`,
+            url: `https://book-my-events.herokuapp.com/add-event`,
             data: event,
             headers: {
                 authorization: token

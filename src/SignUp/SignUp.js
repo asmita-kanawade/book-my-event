@@ -79,7 +79,8 @@ export default function SignUp(props) {
     
     Axios({
       method: `POST`,
-      url: `http://localhost:3002/signup`,
+      //url: `http://localhost:3002/signup`,
+      url: `https://book-my-events.herokuapp.com/signup`,
       data: {
         firstname,
         lastname,

@@ -1,7 +1,8 @@
 import moment from "moment";
 import axios from 'axios';
 
-const server_uri = `http://localhost:3002/api/`;
+//const server_uri = `http://localhost:3002/api/`;
+const server_uri = `https://book-my-events.herokuapp.com/api/`;
 
 export const getEvents = async (conditions) => {
     
