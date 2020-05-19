@@ -59,6 +59,7 @@ export default class Home extends React.Component {
                             />
                         </div>
 
+                        <h3>BROWSE EVENTS BY GENRE</h3>
                         <CategoryTabs
                             events={this.state.events}
                             history={this.props.history} />

@@ -136,6 +136,8 @@ export default class CategoryTabs extends React.Component {
 
 
                         <Tabs
+                            // orientation="vertical"
+                            variant="scrollable"
                             className="search-field"
                             value={this.state.value}
                             onChange={this.handleChange}
