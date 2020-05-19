@@ -94,6 +94,7 @@ export default function SignUp(props) {
         if (resp.data.status === 'success') {
           sessionStorage.setItem('token', resp.data.auth_token);
           sessionStorage.setItem('email', resp.data.email);
+          sessionStorage.setItem('user_type', resp.data.user_type);
 
           props.history.push({
             pathname: `/`,
@@ -102,7 +103,7 @@ export default function SignUp(props) {
 
         }
         else {
-          console.log();
+          //console.log(`signup failed: ${JSON.stringify(resp)}`);
           
           setLoginError(resp.data.message);
           setOpen(true);

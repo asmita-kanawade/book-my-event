@@ -98,7 +98,7 @@ export default function SignInSide(props) {
     })
       .then(resp => {
 
-        console.log(JSON.stringify(resp.data));
+        //console.log(JSON.stringify(resp.data));
 
         if (resp.data.status === 'success') {
           sessionStorage.setItem('token', resp.data.auth_token);
