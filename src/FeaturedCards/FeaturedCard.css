@@ -7,7 +7,53 @@
 .card-content{
     text-align: left;
 }
-.title{
+.card-content.title{
+  text-align: left;
+  font-weight: bold;
 font-size: 16px;
 font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
+.event-card{
+  background-color: cadetblue;
+}
+
+/* #event-title{
+  border: 1px solid black;
+  width: 100%;
+  min-height: 50px;
+  max-height: 50px ;
+} */
+
+.inside-SlideItem{
+  height: '70%';
+   width: '100%';
+   margin-top: '5px';
+   padding: '0px';
+   margin-left: '2px';
+}
+/* .item-carousel:nth-child(1){
+   border: 5px solid black;
+} */
+.featured-event-container >* {
+ width: 100%;
+ /* min-height: 100%; */
+}
+.featured-event-container {
+  /* min-height: 100%; */
+  height: 260px;
+  
+ }
+/* .card-content .title{
+  max-height: 50px;
+  overflow: hidden;
+} */
+/*.card-details{
+    height: 80%;
+    width: 80%;
+    border: 1px solid red;
+} */
+
+/* .slide-item{
+  border: 10px solid rgb(226, 15, 96)
+} */

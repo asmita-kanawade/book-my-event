@@ -82,7 +82,7 @@ export default class BookedEvents extends Component {
               return <>
                
               <Grid item xs={4}>
-                <div className="event-card">
+                <div className="event-cards">
                   <img src={event.imageUrl} id="booked-event-img" />
                   <div className='booked-event-tags-container'>
                     <p className='booked-event-tags ttl'>{event.title}</p>

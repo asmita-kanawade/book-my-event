@@ -33,6 +33,7 @@ import Slide from '@material-ui/core/Slide';
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
+    zIndex: 1000
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -275,8 +276,8 @@ export default function PrimarySearchAppBar(props) {
               </> : 
               <></>}  
 
-              {/* If user at /myEvents, hide login and signup buttons */}
-                {pathname === "/myEvents" ? 
+              {/* If user at /myEvents or /addNewEvent page, hide login and signup buttons */}
+                {pathname === "/myEvents" || pathname === "/addNewEvent" ? 
                 <>
                   <Link to="/" className={classes.links} variant="h6" onClick={logOut}>
                     <IconButton

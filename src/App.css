@@ -41,7 +41,8 @@
   display: none;
 }
 .carouselContainer{
-  height: 324px;
+  margin-top: -11px;
+  height: 384px;
   width: 100%;
   background-color: #162447;
 }

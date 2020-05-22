@@ -32,34 +32,36 @@ function Project(props)
             style={{
                 backgroundImage: `url(${props.item.imageUrl})`,
                 backgroundRepeat:'no-repeat',
-                backgroundSize: '680px 300px',
-                width: '680px',
-                height: '240px',
+                backgroundSize: '100% 100%',
+                width: '70%',
+                height: '300px',
                 margin:'0 auto',
                 fontWeight:'bold',
                 position: 'relative',
-                top: '50px'
+                top: '50px',
+                cursor:"pointer"
             }}
             elevation={10}
+            onClick={()=>redirectToEvent(props.item)}
         >
-            <h2 className='CarouselContent'>{props.item.title}</h2>
-            <Button className="CheckButton" style={{
+            {/* <h2 className='CarouselContent'>{props.item.title}</h2> */}
+            {/* <Button className="CheckButton" style={{
                color:'white',
                backgroundColor:'dodgerblue',
                position:'relative',
-               top: '60px'
+               top: '110px'
             }}
             onClick={()=>redirectToEvent(props.item)}>
                 Check it out!
-            </Button>
-            <p  className='CarouselContent' style={{
+            </Button> */}
+            {/* <p  className='CarouselContent' style={{
                color:'white',
                backgroundColor:'dodgerblue',
                position:'absolute',
                top: '203px',
                width: '100px',
                opacity:1
-            }}>₹ {props.item.price}</p>
+            }}>₹ {props.item.price}</p> */}
 
         </Paper>
     )
@@ -78,7 +80,7 @@ export default class CarouselComponent extends React.Component
         //console.log(`[Carousel.js] props.history: ${JSON.stringify(props.history)}`);
 
         this.state = {
-            autoPlay: true,
+            autoPlay: false,
             timer: 200,
             animation: "slide",
             indicators: false,

@@ -2,3 +2,38 @@
     background-color: white;
     opacity:0.6
 }
+.SecondExample .Carousel-next-198 {
+    right: 3%;
+    top: 71px;
+}
+.SecondExample .Carousel-prev-199 {
+    left: 3%;
+    top: 71px;
+}
+/* .SecondExample .MuiButtonBase-root.MuiIconButton-root.Carousel-button-197.Carousel-next-198.mui--aligh-middle{
+    color: white;
+    background-color: tomato;
+    border: 1px solid black;
+    opacity: 1 !important;
+} */
+.SecondExample .Carousel-button-197{
+    opacity: 1 !important;
+    color: white;
+    background-color: teal;
+}
+.SecondExample .Carousel-button-197:hover{
+    opacity: 1 !important;
+    color: white;
+}
+.panel {
+    width: 90%;
+    margin: auto;
+}
+.panel>* {
+ z-index: 5;
+}
+/* @media screen and (max-width: 700px) and (min-width: 400px) {
+    .panel {
+        width: 80%;
+    }
+} */

@@ -13,6 +13,8 @@ import Button from '@material-ui/core/Button';
 import Axios from 'axios';
 import '../AddNewEvent/AddNewEvent.css';
 import Paper from '@material-ui/core/Paper';
+import PrimarySearchAppBar from '../searchAppBar/searchAppBar';
+
 
 
 class AddNewEvent extends Component {
@@ -58,7 +60,8 @@ class AddNewEvent extends Component {
 
 
     // save the event data
-    saveEvent = () => {
+    saveEvent = (evt) => {
+        evt.preventDefault();
         let token = sessionStorage.getItem('token');
 
         let event = {
@@ -95,7 +98,7 @@ class AddNewEvent extends Component {
             }
         })
             .then(resp => {
-                //console.log(JSON.stringify(resp.data));
+                console.log("Add event: "+JSON.stringify(resp.data));
                 if (resp.data.status === 'success') {
 
                     this.props.history.push({
@@ -128,6 +131,7 @@ class AddNewEvent extends Component {
                 }}
                 autoComplete="off"
             >
+                <PrimarySearchAppBar login={this.state.isLoggedIn} history={this.props.history} />
                 <Paper  className="form-container">
                 <h2>Add New Event</h2>
                 <Grid container spacing={3} style={{

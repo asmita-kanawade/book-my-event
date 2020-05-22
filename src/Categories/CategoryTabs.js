@@ -67,7 +67,7 @@ export default class CategoryTabs extends React.Component {
         super(props);
 
         this.state = {
-            value: 1,
+            value: 0,
             events: [...props.events],
             uniqueCategories: [],
             eventsCopy: [...props.events]
@@ -116,6 +116,24 @@ export default class CategoryTabs extends React.Component {
 
     render() {
         return (
+            <>
+             <div className="genre">
+                    <h3 className="heading-genre">BROWSE EVENTS BY GENRE</h3><div 
+                    className="search-container">
+                        <TextField
+                            InputProps={{
+                                startAdornment: (
+                                        <IconButton className="icon-btn">
+                                            <SearchIcon />
+                                        </IconButton>
+                                )
+                            }}
+                            placeholder="Search"
+                             onChange={(event) => this.searchEvents(event)}
+                            className="search"
+                        />
+                    </div>
+                </div>
                 <Paper
                 elevation={3}
                 className="paper-categories">
@@ -123,14 +141,11 @@ export default class CategoryTabs extends React.Component {
                 <div style={{
                     flexGrow: 1
                 }}>
-
-
-
                     <AppBar
                         style={{
-                            backgroundColor: '#ccc',
+                            backgroundColor: "crimson",
                             position: "static",
-                            color:'black'
+                            color: "white"
                         }}
                     >
 
@@ -142,7 +157,7 @@ export default class CategoryTabs extends React.Component {
                             value={this.state.value}
                             onChange={this.handleChange}
                             aria-label="simple tabs example">
-                            <div className="search-container">
+                            {/* <div className="search-container">
                                 <TextField
                                     InputProps={{
                                         startAdornment: (
@@ -155,7 +170,7 @@ export default class CategoryTabs extends React.Component {
                                     onChange={(event) => this.searchEvents(event)}
                                     className="search"
                                 />
-                            </div>
+                            </div> */}
 
                             {
                                 this.state.uniqueCategories.map((category, index) => {
@@ -172,7 +187,7 @@ export default class CategoryTabs extends React.Component {
                     {
                         this.state.uniqueCategories.map((category, index) => (
                            
-                            <TabPanel value={this.state.value} index={index+1} style={{
+                            <TabPanel value={this.state.value} index={index} style={{
                                 backgroundColor: "white",
                                 borderBottom: "1px solid grey",
                                 paddingBottom: '25px'
@@ -192,6 +207,7 @@ export default class CategoryTabs extends React.Component {
                    
                 </div>
             </Paper>
+            </>
         );
     }
 

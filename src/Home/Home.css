@@ -1,9 +1,14 @@
 .featured-events-container{
-    margin: 30px;
+    margin-left: 30px;
     /* padding-top: 20px; */
 }
-.featured-events-heading{
-    background-color: #ccc;
-    color: black;
-    padding: 15px
+.heading-featured-events{
+    padding-left: 55px;
+    text-align: left;
+    margin-top: 60px;
+    margin-bottom: 10px;
+}
+
+.PrivateTabIndicator-root-258.PrivateTabIndicator-colorSecondary-260.MuiTabs-indicator{
+    background-color: black;
 }

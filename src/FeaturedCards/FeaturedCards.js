@@ -10,42 +10,20 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import moment from 'moment';
 import '../FeaturedCards/FeaturedCard.css'
 
-
-let value = false;
-
-const handleChange = (element) => {
-  value = !value;
-  console.log(`value is ${element}`);
-  //  if(!value){
-  //   element.style.display='block'
-  //  }
-  //  else
-  //  element.style.display='none'
-}
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 export default class FeaturedEvents extends React.Component {
   constructor(props) {
 
     super(props);
-    this.addActiveClass = this.addActiveClass.bind(this);
-    //console.log("[FeaturedCard.js] " + JSON.stringify(props));
-
     this.state = {
-      events: [...props.events],
-      isShownBuy: false
+      events: [...props.events]
     }
 
   }
 
-  componentWillMount() {
-  }
 
-
-  addActiveClass(index) {
-    //  document.getElementById(''`${index}`).style.display='none';
-    console.log("index" + index);
-
-  }
 
   getEventTimings = (event) => {
     let dateAndTime = '';
@@ -73,70 +51,91 @@ export default class FeaturedEvents extends React.Component {
     return dateAndTime;
   }
 
-  render() {
-    //console.log('see what events contain' + JSON.stringify(this.state.events));
-    const redirectToDisplayEvent = (event) => {
+    redirectToDisplayEvent = (event) => {
       this.props.history.push({
         pathname: `/displayEvent`,
         state: { event: event }
       });
     }
+  
+  render() {
+
+
+    const responsive = {
+      desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 4,
+        slidesToSlide: 1 // optional, default to 1.
+      },
+      tablet: {
+        breakpoint: { max: 1024, min: 464 },
+        items: 2,
+        slidesToSlide: 1 // optional, default to 1.
+      },
+      mobile: {
+        breakpoint: { max: 464, min: 0 },
+        items: 1,
+        slidesToSlide: 1 // optional, default to 1.
+      }
+    };    
 
     return (
 
-      <div style={{
-        marginTop: '0px',
-        padding: 0,
-        margin: 0,
-        // backgroundColor: '#00a1ab'
-      }}
-        onMouseEnter={() => {
-          this.setState({ isShownBuy: true });
-          //console.log("hovered..!");
-        }}
-        onMouseLeave={() => {
-          this.setState({ isShownBuy: false });
-         // console.log("overed..!");
-        }}
-      >
+      <div style={{width:"80%", margin:"auto"}}>
 
-        <Grid container spacing={8} justify="center" style={{
-          marginTop: '0px'
-        }}>
-          {this.state.events.map((event, index) => {
-            if (event.isFeatured)
-              return (
-                <Grid item key={index}>
-                  <Card style={{
-                    width: '300px'
-                  }}
-                    onClick={() => redirectToDisplayEvent(event)}>
-                    <CardActionArea>
-                      <CardMedia
-                        component="img"
-                        alt="Contemplative Reptile"
-                        height="140"
-                        image={event.imageUrl}
-                        title={event.title}
-                      />
-                     
-                      <CardContent>
-                        <Typography className="card-content title"><b>{event.title}</b></Typography>
-                        <Typography className="card-content">{this.getEventTimings(event)}</Typography>
-                        <Typography className="card-content">{event.city}</Typography>
-                        <Typography className="card-content">₹ {event.price}</Typography>
-                      </CardContent>
-                    </CardActionArea>
-                    <CardActions style={{ position: 'relative' }}>
-                      {/* <FavoriteBorderIcon className="favUnfilledIcon" size="small" onClick={(e) => handleChange(e)}>
-                      </FavoriteBorderIcon>
-                      <FavoriteIcon className="favFilledIcon" size="small" onClick={this.addActiveClass.bind(index)} /> */}
-                    </CardActions>
-                  </Card>
-                </Grid>
-              )
-          })}
-        </Grid>
+        <Carousel
+          swipeable={true}
+          draggable={false}
+          showDots={false}
+          responsive={responsive}
+          ssr={true} // means to render carousel on server-side.
+          infinite={true}
+          autoPlay={this.props.deviceType !== "mobile" ? false : false}
+          autoPlaySpeed={1000}
+          keyBoardControl={true}
+          customTransition="all .5"
+          transitionDuration={500}
+          containerClass="carousel-container"
+          removeArrowOnDeviceType={["tablet", "mobile"]}
+          deviceType={this.props.deviceType}
+          dotListClass="custom-dot-list-style"
+          itemClass="carousel-item-padding-40-px"
+        >
+
+        {
+            this.state.events.map( (event, index) => {
+                if(event.isFeatured)
+                    return <div >
+                          <Card style={{
+                            width: '250px',
+                            margin: '5px',
+                            height: "300px"
+                          }}
+                            onClick={() =>this.redirectToDisplayEvent(event)}>
+                            <CardActionArea>
+                              <CardMedia
+                                component="img"
+                                alt="Contemplative Reptile"
+                                height="140"
+                                image={event.imageUrl}
+                                title={event.title}
+                              />
+                             
+                              <CardContent>
+                              <Typography className="card-content title">{event.title}</Typography>
+                                <Typography className="card-content">{this.getEventTimings(event)}</Typography>
+                                <Typography className="card-content">{event.city}</Typography>
+                                <Typography className="card-content">₹ {event.price}</Typography>
+                              </CardContent>
+                            </CardActionArea>
+                            
+                          </Card>
+
+                  </div>
+              })
+          }
+
+        </Carousel>
       </div>
 
     );

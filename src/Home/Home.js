@@ -5,10 +5,12 @@ import CategoryTabs from '../Categories/CategoryTabs';
 import CarouselComponent from '../Carousel/Carousel';
 import PrimarySearchAppBar from '../searchAppBar/searchAppBar';
 import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/lab/Autocomplete';
 import '../Home/Home.css';
 import Paper from '@material-ui/core/Paper';
-import AppBar from '@material-ui/core/AppBar';
+import IconButton from "@material-ui/core/IconButton";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import SearchIcon from "@material-ui/icons/Search";
+import AutoPlayCarousel from '../CarouselItemsForFeaturedEvents/AutoPlayCarousel'
 
 
 export default class Home extends React.Component {
@@ -36,9 +38,6 @@ export default class Home extends React.Component {
             this.setState({ isLoggedIn: true })
         }
 
-
-
-
     }
 
     render() {
@@ -49,7 +48,6 @@ export default class Home extends React.Component {
             <div> 
 
                 <PrimarySearchAppBar login={this.state.isLoggedIn} history={this.props.history} />
-
                 {this.state.events.length > 0 ?
                     <div>
                         <div className='carouselContainer'>
@@ -58,27 +56,16 @@ export default class Home extends React.Component {
                                 history={this.props.history}
                             />
                         </div>
-
-                        <h3>BROWSE EVENTS BY GENRE</h3>
+                        <h3 className="heading-featured-events">FEATURED EVENTS</h3>
+                        <div className='featured-events-container'>
+                                <FeaturedEvents
+                                    events={this.state.events}
+                                    history={this.props.history} 
+                                />
+                        </div>
                         <CategoryTabs
                             events={this.state.events}
                             history={this.props.history} />
-
-                        <Paper
-                            className='featured-events-container'
-                            elevation={3}>
-
-                                <Paper elevation={3}>
-                                <div
-                                    className='featured-events-heading'
-                                > <b>Featured Events</b>
-                                </div>
-                                </Paper> 
-
-                                <FeaturedEvents
-                                    events={this.state.events}
-                                    history={this.props.history} />
-                        </Paper>
                     </div>
                     : ""
                 }
