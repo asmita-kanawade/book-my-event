@@ -10,6 +10,8 @@ import {Search} from '../Search/Search';
 import { getEventTimings } from '../Services/services';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import { Grid, CircularProgress, Backdrop, Card, AppBar } from '@material-ui/core';
+
 
 export default class EventsList extends Component {
   
@@ -97,9 +99,14 @@ export default class EventsList extends Component {
             history={this.props.history} 
           />
           <Paper className="heading-event-list">
-            <b>List of Published Events</b>
             <div className="published-event-topbox">
-              <div className="addIcon">
+            <b>List of Published Events</b>
+              <div className="search-box">
+              <Search
+                changed = {(event) => this.searchEvents(event)}
+              />
+            </div>
+            <div className="addIcon">
                 <Tooltip title="Add New Event">
                 <Fab 
                   color="secondary" 
@@ -110,15 +117,11 @@ export default class EventsList extends Component {
                 </Fab>
                 </Tooltip>
               </div>
-              <div className="search-box">
-              <Search
-                changed = {(event) => this.searchEvents(event)}
-              />
-            </div>
             </div>
             
             
             </Paper>
+    { this.state.events.length > 0 ?
       <div>
         {this.state.events.map((event, index) => {
           return <div key={index}>
@@ -151,6 +154,12 @@ export default class EventsList extends Component {
         })
       }
        </div>
+       : (
+        <Backdrop style={{color: '#eee'}} open={true} >
+            <CircularProgress color="inherit" /> 
+        </Backdrop> 
+    )
+    }
       </div>
     );
   }

@@ -7,12 +7,8 @@ import './PublishEvent.css';
 export default class PublishEvent extends Component {
   render() {
     return (
-      <div style={{backgroundColor:"#162447"}}>
-{/*           <AdminAppBar history={this.props.history} />
-          <Paper className="heading-event-list">
-            <b>List of Published Events</b>
-          </Paper>
- */}          <EventsList  history={this.props.history} />
+      <div style={{backgroundColor:"#162447", paddingBottom:'10px',paddingTop: '30px', marginTop: '60px'}}>
+          <EventsList  history={this.props.history} />
       </div>
     );
   }

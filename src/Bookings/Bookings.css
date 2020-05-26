@@ -9,21 +9,42 @@
 }
 .total{
     margin: 15px auto;
-    height: 90px;
+    height: 66px;
     padding-top: 10px;
     width: 80%;
+    position: relative;
 }
 .total b{
-    text-align: left;
+    margin: auto;
+    margin-right: 15px;
+    display: inline-block;
 }
 .event-list-paper{
     cursor: pointer;
 }
 .search-box{
+    display: inline-block;
     width: 50%;
     border-radius: 5px;
     margin: auto;
-    margin-top: 10px;
+    margin-top: 20px;
     border: none;
     box-shadow: 0px 1px 3px 1px grey;
+}
+.total-bookings{
+    right: 20px;
+    top: 14px;
+    position: absolute;
+    padding: 5px;
+    text-align: center;
+    width: 210px;
+    height: 130px;
+    margin-top: 5px;
+    background-color:#162447;
+    color: white;
+    border-radius: 20px;
+}
+.count{
+    font-size: 40px;
+    color: white;
 }

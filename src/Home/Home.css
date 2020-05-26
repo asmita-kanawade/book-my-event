@@ -13,8 +13,9 @@
     background-color: black;
 }
 .carouselContainer{
-    margin-top: -51px;
-    height: 384px;
+    /* margin-top: -51px; */
+    margin-top: -75px;
+    height: 478px;
     width: 100%;
     background-color:#162447; 
   }

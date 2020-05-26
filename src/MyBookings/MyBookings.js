@@ -50,6 +50,7 @@ export default class MyBookings extends Component {
         <>
           
           <MainAppBar history={this.props.history}/>
+          <div className="my-bookings-container">
           { !this.state.showLoading ? (
                 <>
                 <h2 id="id-ttl">My Bookings</h2>
@@ -61,7 +62,7 @@ export default class MyBookings extends Component {
                       <Card key={index}  className="event-cards">
                         <img src={event.imageUrl} id="booked-event-img" />
                         <div className='booked-event-tags-container'>
-                          <p className='booked-event-tags ttl'>{event.title}</p>
+                          <p className='booked-event-tags ttl'>{event.title.length >=28 ?event.title.substring(0, 25)+ "..." : event.title.substring(0, event.title.length)}</p>
                           <p className='booked-event-tags'>{event.city}</p>
                           <p className='booked-event-tags'>{getEventTimings(event)}</p>
                           <p className='booked-event-tags'>₹ {event.price}</p>
@@ -87,7 +88,7 @@ export default class MyBookings extends Component {
               </Backdrop> 
               ) 
             }
-          
+          </div>
         </>
       )
   }

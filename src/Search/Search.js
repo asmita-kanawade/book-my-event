@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
       },
     },
     searchIcon: {
-      padding: theme.spacing(0, 2),
+      // padding: theme.spacing(0, 2),
       height: '100%',
       position: 'absolute',
       pointerEvents: 'none',
@@ -51,6 +51,8 @@ const useStyles = makeStyles((theme) => ({
       color: 'inherit'
     },
     inputInput: {
+      position:'relative',
+      right:'50px',
       padding: theme.spacing(1, 1, 1, 0),
       // vertical padding + font size from searchIcon
       paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
@@ -82,9 +84,9 @@ export const Search = (props) => {
 
     return (
         <div className={classes.search}>
-            <div className={classes.searchIcon}>
-                <SearchIcon />
-            </div>
+         
+            <SearchIcon  className={classes.searchIcon}/>
+         
             <InputBase
                 placeholder="Search…"
                 classes={{

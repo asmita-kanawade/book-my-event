@@ -6,6 +6,8 @@ import MainAppBar from '../AppBar/AppBar';
 import '../Bookings/Bookings.css';
 import { getUniqueEvents, getEventTimings } from '../Services/services';
 import {Search} from '../Search/Search';
+import { Grid, CircularProgress, Backdrop, Card, AppBar } from '@material-ui/core';
+
 
 export default class Bookings extends Component {
   
@@ -64,36 +66,51 @@ export default class Bookings extends Component {
   render() {
     return (
      
-      <div style={{backgroundColor:"#162447"}}>
+      <div style={{backgroundColor:"#162447",paddingBottom:'10px', paddingTop: '30px', marginTop: '60px'}}>
          <MainAppBar 
           history={this.props.history}
         />
 
-        <Paper className="total">
+        <Paper className="heading-event-list">
           <b>Booked Events</b>
           <div className="search-box">
             <Search
               changed = {(event) => this.searchEvents(event)}
             />
+
         </div>
         </Paper>
         
        
-
+ { this.state.events.length > 0 ?
       <div>
         {this.state.events.map((event, index) => {
           return <div key={index} >
            <Paper className="event-list-paper" elevation={3} onClick={()=>this.redirectToBookingDetails(event.id)} >
           <div className="list"> 
-            <div className="event-list-cards">
-              <img src={event.imageUrl} className="event-image" /><div 
-              className='booked-event-tags-container'>
-                <p className='booked-event-tags ttl'>{event.title}</p>
-                <p className='booked-event-tags'>{event.city}</p>
-                <p className='booked-event-tags'>{getEventTimings(event)}</p>
-                <p className='booked-event-tags'>₹ {event.price}</p>
-                <b className='booked-event-tags'>Total Bookings: {event.totalBookings}</b>
-            </div>
+             <div className="event-list-cards">
+                <img src={event.imageUrl} className="event-image" /><div 
+                className='booked-event-tags-container'>
+                  <p className='booked-event-tags ttl'>{event.title}</p>
+                  <p className='booked-event-tags'>{event.city}</p>
+                  <p className='booked-event-tags'>{getEventTimings(event)}</p>
+                  <p className='booked-event-tags'>₹ {event.price}</p>
+              </div>
+              <div>
+                <Card className="total-bookings" style={{
+                  backgroundColor:"#00909e"
+                }}>
+                  <p className="count">{event.totalBookings}</p>
+                  <p style={{
+                    position:'absolute',
+                    bottom:'0px',
+                    left:'50px',
+                    fontWeight: 'bold',
+                    color: 'white'
+                  }}>Total bookings</p>
+                </Card>
+               
+              </div>
           </div>
          </div>
          </Paper>
@@ -101,6 +118,13 @@ export default class Bookings extends Component {
         })
       }
        </div>
+        : (
+          <Backdrop  
+            open={true} >
+              <CircularProgress color="inherit" /> 
+          </Backdrop> 
+      )
+      }
       </div>
     );
   }

@@ -1,11 +1,13 @@
 .heading-event-list{
-    margin: 15px auto;
-    height: 120px;
+    margin: 5px auto;
+    height: 85px;
     padding-top: 10px;
     width: 80%;
+    
 }
 
 .heading-event-list b{
 margin: auto;
-margin-left: 15px;
+margin-right: 25px;
 }
+

@@ -106,6 +106,10 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
+  Snackbar:{
+    position:'absolute',
+    top:'10px'
+  }
 }));
 
 
@@ -320,7 +324,7 @@ export default function MainAppBar(props) {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           <Avatar src="logo-192x192.png" alt="B"></Avatar>
           <Typography className={classes.title} variant="h6" noWrap>
@@ -458,7 +462,7 @@ export default function MainAppBar(props) {
         </DialogActions>
       </Dialog>
 
-      <div className={classes.root}>
+      <div className={classes.root, classes.Snackbar}>
         <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleClose}>
             <Alert onClose={handleClose} severity="info">
                 Succesfully logged out!

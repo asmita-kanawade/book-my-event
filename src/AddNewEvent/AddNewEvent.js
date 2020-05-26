@@ -14,8 +14,7 @@ import Axios from 'axios';
 import '../AddNewEvent/AddNewEvent.css';
 import Paper from '@material-ui/core/Paper';
 import MainAppBar from '../AppBar/AppBar';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-
+import CancelIcon from '@material-ui/icons/Cancel';
 
 class AddNewEvent extends Component {
     constructor(props) {
@@ -134,9 +133,9 @@ class AddNewEvent extends Component {
                 autoComplete="off"
             >
                 <MainAppBar history={this.props.history} />
-                <h3 className="heading-addNew">Add New Event</h3>
+               
                 <Paper  className="form-container">
-                <h5 className="instruction">Please fill all required details</h5>
+                <h3 className="heading-addNew">Add New Event</h3>
                 <Grid container spacing={3} style={{
                     margin:"20px"
                 }}>
@@ -394,7 +393,7 @@ class AddNewEvent extends Component {
                             variant="contained"
                             color="primary"
                             size="large"
-                            startIcon={<ArrowBackIcon />}
+                            startIcon={<CancelIcon />}
                             onClick={this.redirectToPublishEvent}
                             style={{
                                 margin:"5px"

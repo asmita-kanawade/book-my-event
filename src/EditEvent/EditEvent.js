@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import MomentUtils from '@date-io/moment';
 import Switch from '@material-ui/core/Switch';
 import SaveIcon from '@material-ui/icons/Save';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import CancelIcon from '@material-ui/icons/Cancel';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import AdminAppBar from '../PublishEvent/AdminAppBar';
@@ -170,7 +170,6 @@ export default class EditEvent extends React.Component {
             {/* <AdminAppBar history={this.props.history}/> */}
             <MainAppBar history={this.props.history} />
             <div className='edit-container' id="editEvent">
-            <h3 className="heading-edit">Edit Event</h3>
              <form
                 onSubmit={this.TextFieldSubmitHandler}
                 style={{
@@ -184,7 +183,7 @@ export default class EditEvent extends React.Component {
                 autoComplete="off"
             >
                 <Paper  className="form-container">
-                <h5 className="instruction">Edit required fields and press Update</h5>
+                <h3 className="heading-edit">Edit Event</h3>
                 <Grid container spacing={3} style={{
                     margin:"20px"
                 }}>
@@ -448,7 +447,7 @@ export default class EditEvent extends React.Component {
                     variant="contained"
                     color="primary"
                     size="large"
-                    startIcon={<ArrowBackIcon />}
+                    startIcon={<CancelIcon />}
                     onClick={this.redirectToEventsList}
                     style={{
                         margin:"5px"

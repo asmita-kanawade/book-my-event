@@ -7,6 +7,9 @@
     width: 260px;
     margin: 10px;
  }
+ .my-bookings-container{
+     margin-top: 80px;
+ }
 
  .evt-grid{
      /* padding: 20px; */

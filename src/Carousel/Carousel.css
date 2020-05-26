@@ -37,3 +37,7 @@
         width: 80%;
     }
 } */
+
+#evt-carousel .eg-flick-viewport{
+    z-index: 1000 !important;
+}

@@ -79,7 +79,7 @@ export default class CategorisedEvents extends React.Component {
                     title={event.title}
                   />
                   <CardContent>
-                      <Typography className="card-content title">{event.title.length >=40 ?event.title.substring(0, 40)+ "..." : <div>{event.title.substring(0, event.title.length)}</div>}</Typography>
+                      <Typography className="card-content title">{event.title.length >=28 ?event.title.substring(0, 28)+ "..." : <div>{event.title.substring(0, event.title.length)}</div>}</Typography>
                       <Typography className="card-content">{getEventTimings(event)}</Typography>
                       <Typography className="card-content">{event.city}</Typography>
                       <Typography className="card-content">₹ {event.price}</Typography>

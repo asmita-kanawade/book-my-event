@@ -215,7 +215,7 @@ class ExpandEvent extends Component {
           <h4 className='h4'>Venue</h4>
           <p>{this.state.event.description.venue}</p>
 
-          <h4 className='h4'>Timimgs</h4>
+          <h4 className='h4'>Timings</h4>
           <p>{getEventTimings(this.state.event)} {this.state.event.occurrence === "" || this.state.event.occurrence=="NA" ? "": ("| "+ this.state.event.occurrence)} </p>
 
           <h4 className='h4'>Terms and conditions</h4>
@@ -224,9 +224,7 @@ class ExpandEvent extends Component {
 
       </div>
       
-      <div 
-        style={{ width: '100%', height: '100vh',}}
-      >
+      <div>
       <Snackbar open={this.state.open} autoHideDuration={5000} onClose={this.handleClose}>
         <Alert onClose={this.handleClose} severity="error">
           {this.state.bookingError}

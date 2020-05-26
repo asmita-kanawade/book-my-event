@@ -32,18 +32,18 @@
  border: none;
 }
 .paper-categories{
-  margin: 30px;
-  margin-left: 60px;
+  margin: 60px;
+  margin-top: 20px;
 }
 .heading-genre{
   top: 15px;
   margin-right: 20px;
 }
-.search-container{
-}
 .genre{
-  position: relative;text-align: left;
+  position: relative;
+  text-align: left;
   padding-left: 60px;
+  margin-top: 20px;
 }
 .genre>*{
  display: inline-block;

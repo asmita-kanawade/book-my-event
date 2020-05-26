@@ -72,7 +72,7 @@ export default function BookingDetails(props) {
                 </p></div>
 
             </div>
-            <div id='evt-details' className='event-blocks'>
+            <div id='evt-details' className='event-blocks evt-details'>
               <div id='event-title'><h3 id='event-title-p'><p>{rows[0].title}</p></h3></div>
 
               <div className='event-details-block'>
@@ -102,7 +102,7 @@ export default function BookingDetails(props) {
             <StyledTableCell>Sr.No.</StyledTableCell>
             <StyledTableCell align="right">Customer Name</StyledTableCell>
             <StyledTableCell align="right">Email</StyledTableCell>
-            <StyledTableCell align="right">Booking ID</StyledTableCell>
+            <StyledTableCell align="right">Payment ID</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -113,7 +113,7 @@ export default function BookingDetails(props) {
               </StyledTableCell>
               <StyledTableCell align="right"> {row.customer.firstname} {row.customer.lastname}</StyledTableCell>
               <StyledTableCell align="right">{row.customer.email}</StyledTableCell>
-              <StyledTableCell align="right">{row._id}</StyledTableCell>
+              <StyledTableCell align="right">{row.payment_id}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

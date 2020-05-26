@@ -2,6 +2,7 @@ import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import autoBind from 'auto-bind';
 import './Carousel.css';
+import './plugins.css';
 import {
     FormLabel,
     FormControlLabel,
@@ -15,59 +16,10 @@ import {
 } from '@material-ui/core'
 import { getEvents } from '../Services/services';
 
-
-function Project(props)
-{
-    const redirectToEvent = (item) => {
-        //console.log(`redirectToEvent-item: ${JSON.stringify(item)}`);
-        props.history.push({
-            pathname:`/show-event`,
-            state: {event: item}
-        });
-    }
-      
-    return (
-        <Paper 
-            className="Project"
-            style={{
-                backgroundImage: `url(${props.item.imageUrl})`,
-                backgroundRepeat:'no-repeat',
-                backgroundSize: '100% 100%',
-                width: '70%',
-                height: '300px',
-                margin:'0 auto',
-                fontWeight:'bold',
-                position: 'relative',
-                top: '50px',
-                cursor:"pointer"
-            }}
-            elevation={10}
-            onClick={()=>redirectToEvent(props.item)}
-        >
-            {/* <h2 className='CarouselContent'>{props.item.title}</h2> */}
-            {/* <Button className="CheckButton" style={{
-               color:'white',
-               backgroundColor:'dodgerblue',
-               position:'relative',
-               top: '110px'
-            }}
-            onClick={()=>redirectToEvent(props.item)}>
-                Check it out!
-            </Button> */}
-            {/* <p  className='CarouselContent' style={{
-               color:'white',
-               backgroundColor:'dodgerblue',
-               position:'absolute',
-               top: '203px',
-               width: '100px',
-               opacity:1
-            }}>₹ {props.item.price}</p> */}
-
-        </Paper>
-    )
-}
-
-
+import Flicking from "@egjs/react-flicking";
+import { Fade, AutoPlay } from "@egjs/flicking-plugins";
+import "./plugins.css";
+import zIndex from '@material-ui/core/styles/zIndex';
 
 
 export default class CarouselComponent extends React.Component
@@ -80,39 +32,55 @@ export default class CarouselComponent extends React.Component
         //console.log(`[Carousel.js] props.history: ${JSON.stringify(props.history)}`);
 
         this.state = {
-            autoPlay: false,
-            timer: 200,
-            animation: "slide",
-            indicators: false,
-            timeout: 200,
-            events: props.events
+            events: props.events,
+
+            plugins : [new Fade(), new AutoPlay(2000, "NEXT")]
         }
 
-        autoBind(this);
     }
 
-    
+
+    redirectToEvent = (item) => {
+        //console.log(`redirectToEvent-item: ${JSON.stringify(item)}`);
+        this.props.history.push({
+            pathname:`/show-event`,
+            state: {event: item}
+        });
+    }
     
     render()
     {
         return (
-            <div style={{marginTop: "50px", color: "#494949"}}>
+            <div id="evt-carousel" style={{marginTop: "75px", zIndex:2}}>
 
-                <Carousel 
-                    className="SecondExample"
-                    autoPlay={this.state.autoPlay}
-                    timer={this.state.timer}
-                    animation={this.state.animation}
-                    indicators={this.state.indicators}
-                    timeout={this.state.timeout}
-                >
+                <Flicking
+                    className="flicking"
+                    circular={true}
+                    gap={10}
+                    duration={500}
+                    plugins={this.state.plugins}
+                    style={{
+                        width:"100%",
+                        margin: "auto",
+                        paddingTop:"120px",
+                        zIndex: 2
+                    }}
+                    >
                     {
                         this.state.events.map( (event, index) => {
                             if(event.showInBanner)
-                                return <Project item={event} key={index} history= {this.props.history}/>
+                                return <div className="panel" style={{ width: "50%"}}
+                                            onClick={()=>this.redirectToEvent(event)}>
+                                            <img 
+                                                src={event.imageUrl} 
+                                                style={{height:"300px" ,width:"90%"}}
+                                            />
+                                        </div>
                         })
                     }
-                </Carousel>
+
+                </Flicking>
+
             </div>
 
         )

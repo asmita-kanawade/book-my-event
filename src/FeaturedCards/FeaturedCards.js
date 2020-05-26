@@ -65,7 +65,7 @@ export default class FeaturedEvents extends React.Component {
           responsive={responsive}
           ssr={true} // means to render carousel on server-side.
           infinite={true}
-          autoPlay={this.props.deviceType !== "mobile" ? false : false}
+          autoPlay={this.props.deviceType !== "mobile" ? true : false}
           autoPlaySpeed={1000}
           keyBoardControl={true}
           customTransition="all .5"
@@ -98,7 +98,7 @@ export default class FeaturedEvents extends React.Component {
                              
                               <CardContent>
 
-                        <Typography className="card-content title">{event.title.length >=40 ?event.title.substring(0, 40)+ "..." : event.title.substring(0, event.title.length)}</Typography>
+                        <Typography className="card-content title">{event.title.length >=28 ?event.title.substring(0, 25)+ "..." : event.title.substring(0, event.title.length)}</Typography>
                                 <Typography className="card-content">{getEventTimings(event)}</Typography>
                                 <Typography className="card-content">{event.city}</Typography>
                                 <Typography className="card-content">₹ {event.price}</Typography>

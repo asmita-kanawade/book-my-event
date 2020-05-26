@@ -23,7 +23,6 @@ export default class App extends React.Component {
     return (
         <div className="App">
           <BrowserRouter>
-
             <Switch>
               <Route path="/" exact component={Home}></Route>
               <Route path="/login" exact component={SignInSide}></Route>
@@ -37,9 +36,7 @@ export default class App extends React.Component {
               <Route path="/booking-details" exact component={BookingDetails}></Route>
               {/* <Route path="/myFavourites" exact component={FavouriteEvents}></Route> */}
             </Switch>
-
           </BrowserRouter>
-
         </div>
     );
   }
