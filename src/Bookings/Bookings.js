@@ -16,8 +16,8 @@ export default class Bookings extends Component {
       }
 
     componentWillMount() {
-         Axios.post(`http://localhost:3002/api/search-bookings`)
-        // Axios.post(`https://book-my-events.herokuapp.com/api/search-bookings`)
+        //  Axios.post(`http://localhost:3002/api/search-bookings`)
+         Axios.post(`https://book-my-events.herokuapp.com/api/search-bookings`)
              .then(async res => {      
                  let uniqueEvents = await getUniqueEvents(res.data);    
                  this.setState({ events: uniqueEvents });
