@@ -1,0 +1,29 @@
+.booked-event-details{
+    text-align: left;
+    font-weight: bold;
+    color: #162447;
+}
+.booked-event-details-container{
+    margin-left: 15px;
+    padding-bottom: 10px;
+}
+.total{
+    margin: 15px auto;
+    height: 90px;
+    padding-top: 10px;
+    width: 80%;
+}
+.total b{
+    text-align: left;
+}
+.event-list-paper{
+    cursor: pointer;
+}
+.search-box{
+    width: 50%;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 10px;
+    border: none;
+    box-shadow: 0px 1px 3px 1px grey;
+}

@@ -24,9 +24,9 @@
 }
 .event-blocks{
     display: inline-block;
-    height: 370px;
+    height: 300px;
     border:1px solid #d0d0d0;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     margin: 10px;
     
 }
@@ -63,8 +63,8 @@
     top: 253px;
 }
 #category-tag{
-    left: 0px;
-    bottom: 24px;
+    left: 9px;
+    bottom: 9px;
 }
 .event-icon{
     height: 30px;
@@ -73,7 +73,6 @@
 }
 .event-details-block{
     position: relative;
-    margin: 17px;
 }
 .event-details-block>*{
     display: inline-block;
@@ -90,8 +89,7 @@
 }
 .icon-says{
     vertical-align: top;
-    /* width: 130px; */
-    width: 120px;
+    width: 160px;
     text-align: left;
     margin: 0;
     padding-left: 31px;
@@ -99,7 +97,7 @@
 .event-booking{
     border: 1px solid grey;
     margin: auto;
-    margin-top: 25px;
+    margin-top: 5px;
     background-color: #00263b;
     color: white;
     width: 250px;
@@ -133,7 +131,7 @@
 .category-text{
     width: fit-content;
     text-align: left;
-    background-color: #00263b;
+    background-color: #c20000;
     color: white;
     padding: 5px;
 }
@@ -151,6 +149,7 @@
 }
 .display-event-container{
     position: relative;
+    top:70px;
 }
 /* .display-event-container>*{
    display: inline-block;

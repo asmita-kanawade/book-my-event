@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
 import {
     MuiPickersUtilsProvider,
@@ -9,23 +10,40 @@ import Grid from '@material-ui/core/Grid';
 import MomentUtils from '@date-io/moment';
 import Switch from '@material-ui/core/Switch';
 import SaveIcon from '@material-ui/icons/Save';
-import Button from '@material-ui/core/Button';
-import Axios from 'axios';
-import '../AddNewEvent/AddNewEvent.css';
-import Paper from '@material-ui/core/Paper';
-import MainAppBar from '../AppBar/AppBar';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
+import AdminAppBar from '../PublishEvent/AdminAppBar';
+import '../EditEvent/EditEvent.css';
+import MainAppBar from '../AppBar/AppBar';
 
-
-class AddNewEvent extends Component {
+export default class EditEvent extends React.Component {
     constructor(props) {
-
         super(props);
+
+        const event = props.location.state;
+          
         this.state = {
-            isFeatured: true,
-            showInBanner: true
-        }
+            id: event._id,
+            title: event.title,
+            city:event.city,
+            category:event.category,
+            from_date:event.from_date,
+            to_date:event.to_date,
+            from_time:event.from_time,
+            to_time:event.to_time,
+            occurrence:event.occurrence,
+            price:event.price,
+            imageUrl:event.imageUrl,
+            showInBanner:event.showInBanner,
+            isFeatured:event.isFeatured,
+            artists:event.artists,
+            about:event.description.about,
+            venue:event.description.venue,
+            terms:event.description.terms,
+        };
     }
+
 
     handleStartDateChange = (date) => {
         //alert('from_date: '+ date.format('YYYYMMDD'));
@@ -46,83 +64,115 @@ class AddNewEvent extends Component {
     handleEndTimeChange = (date) => {
         //this.setState({ to_time: date.format('HH:mm') });
         this.setState({ to_time: date });
-    };
+    };    
 
+
+    redirectToHome =  (event) => {
+        //console.log event);
+          this.props.history.push({
+          pathname:`/`,
+         event
+        });
+      }
+
+    TextFieldSubmitHandler = (event) => {
+        event.preventDefault();
+        // let titleErr = '';
+        // let bodyErr = '';
+       
+        // let title = this.state.title;
+        
+        // if (title === null || title.length === 0) {
+        //     titleErr = <strong>Please enter title</strong>;
+        // }
+        // this.setState({titleerrormessage: titleErr});
+
+        // let body = this.state.body;
+        
+        // if (body === null || body.length === 0) {
+        //     bodyErr = <strong>Please enter the content</strong>;
+        // }
+
+        // this.setState({bodyerrormessage: bodyErr});
+
+        // if(titleErr.length == 0 && bodyErr.length == 0)
+        // {
+            this.updateEvent({
+                _id: this.state.id,
+                title: this.state.title,
+                city:this.state.city,
+                category:this.state.category,
+                from_date:this.state.from_date,
+                to_date:this.state.to_date,
+                from_time:this.state.from_time,
+                to_time:this.state.to_time,
+                occurrence:this.state.occurrence,
+                price:this.state.price,
+                imageUrl:this.state.imageUrl,
+                showInBanner:this.state.showInBanner,
+                isFeatured:this.state.isFeatured,
+                artists:this.state.artists,
+                about:this.state.about,
+                venue:this.state.venue,
+                terms:this.state.terms,
+
+               
+            });
+    
+        // }
+    
+    }
+    
+    TextFieldChangeHandler = (event) => {
+        let nam = event.target.name;
+        let val = event.target.value;
+        
+        this.setState({ 
+            [nam]: val 
+        });
+        
+    }
+
+    redirectToEventsList = () => {
+        this.props.history.push({
+            pathname:`/publish-event`
+          });
+    }
+    
     handleSwitchChange = (event) => {
         this.setState({ [event.target.name]: event.target.checked });
     };
-
-
-    handleTextFieldChange = (event) => {
-        //alert([event.target.name] + ' -> ' + event.target.value);
-        this.setState({ [event.target.name]: event.target.value });
-    };
-
-    redirectToPublishEvent = () => {
-    this.props.history.push({
-        pathname:`/publish-event`
-      });
-    }
-
-    // save the event data
-    saveEvent = (evt) => {
-        evt.preventDefault();
-        let token = sessionStorage.getItem('token');
-
-        let event = {
-            title: this.state.title,
-            city: this.state.city,
-            category: this.state.category,
-            from_date: this.state.from_date,
-            to_date: this.state.to_date,
-            from_time: this.state.from_time,
-            to_time: this.state.to_time,
-            occurrence: this.state.occurrence,
-            price: this.state.price,
-            favourites_count: this.state.favourites_count,
-            imageUrl: this.state.imageUrl,
-            showInBanner: this.state.showInBanner,
-            isFeatured: this.state.isFeatured,
-            artists: this.state.artists,
-            description: {
-                about: this.state.about,
-                venue: this.state.venue,
-                terms: this.state.terms
-            }
-        };
-
-        //console.log(`[saveEvent] event: ${JSON.stringify(event)}`);
-
-        Axios({
-            method: `POST`,
-           // url: `http://localhost:3002/add-event`,
-            url: `https://book-my-events.herokuapp.com/add-event`,
-            data: event,
+   
+    updateEvent = (event)=>{
+        console.log(`server: ${process.env.SERVER_URL}`);
+            
+        axios({
+             // url: `http://localhost:3002/update-event`,
+             url: `https://book-my-events.herokuapp.com/update-event`,
+            method: "POST",
             headers: {
-                authorization: token
-            }
-        })
-            .then(resp => {
-                console.log("Add event: "+JSON.stringify(resp.data));
-                if (resp.data.status === 'success') {
-                    this.redirectToPublishEvent();
-
-                }
-                else {
-                    // setLoginError(resp.data.message);
-                    this.setState({ openSnack: true });
-
-                    console.log(`[AddNewEvent.js] error in adding event: ${resp.data.message}`);
-                }
-            });
-
+              "Content-Type": "application/json",
+            },
+            data: JSON.stringify (event),
+          }).then(response => {
+              this.redirectToEventsList();
+            //console.log(`response: ${JSON.stringify(response)}`);
+            // this.props.history.push(`/post/${this.props.match.params.id}`);
+          }).catch(error => {
+            console.log(`update post error: ${error}`);
+          });
+    
     }
-
+    
     render() {
         return (
-            <div className="form-container-addNew">
-            <form
-                onSubmit={this.saveEvent}
+            <div>
+            {/* <AdminAppBar history={this.props.history}/> */}
+            <MainAppBar history={this.props.history} />
+            <div className='edit-container' id="editEvent">
+            <h3 className="heading-edit">Edit Event</h3>
+             <form
+                onSubmit={this.TextFieldSubmitHandler}
                 style={{
                     root: {
                         '& > *': {
@@ -133,10 +183,8 @@ class AddNewEvent extends Component {
                 }}
                 autoComplete="off"
             >
-                <MainAppBar history={this.props.history} />
-                <h3 className="heading-addNew">Add New Event</h3>
                 <Paper  className="form-container">
-                <h5 className="instruction">Please fill all required details</h5>
+                <h5 className="instruction">Edit required fields and press Update</h5>
                 <Grid container spacing={3} style={{
                     margin:"20px"
                 }}>
@@ -147,7 +195,8 @@ class AddNewEvent extends Component {
                             name="title"
                             label="Title"
                             variant="outlined"
-                            onChange={this.handleTextFieldChange}
+                            value={this.state.title}
+                            onChange={this.TextFieldChangeHandler}
                             style={{
                                 width:'80%'
                             }}
@@ -161,7 +210,8 @@ class AddNewEvent extends Component {
                             name="city"
                             label="City"
                             variant="outlined"
-                            onChange={this.handleTextFieldChange}
+                            value={this.state.city}
+                            onChange={this.TextFieldChangeHandler}
                             style={{
                                 width:'60%'
                             }}
@@ -174,7 +224,8 @@ class AddNewEvent extends Component {
                             name="venue"
                             label="Venue"
                             variant="outlined"
-                            onChange={this.handleTextFieldChange}
+                            value={this.state.venue}
+                            onChange={this.TextFieldChangeHandler}
                             style={{
                                 width:'60%'
                             }}
@@ -187,7 +238,8 @@ class AddNewEvent extends Component {
                             name="category"
                             label="Category"
                             variant="outlined"
-                            onChange={this.handleTextFieldChange}
+                            value={this.state.category}
+                            onChange={this.TextFieldChangeHandler}
                             style={{
                                 width:'60%'
                             }}
@@ -201,7 +253,8 @@ class AddNewEvent extends Component {
                             name="artists"
                             label="Artist"
                             variant="outlined"
-                            onChange={this.handleTextFieldChange}
+                            value={this.state.artists}
+                            onChange={this.TextFieldChangeHandler}
                             style={{
                                 width:'60%'
                             }}
@@ -213,7 +266,8 @@ class AddNewEvent extends Component {
                             name="occurrence"
                             label="Occurance"
                             variant="outlined"
-                            onChange={this.handleTextFieldChange}
+                            value={this.state.occurrence}
+                            onChange={this.TextFieldChangeHandler}
                             style={{
                                 width:'60%'
                             }}
@@ -226,7 +280,8 @@ class AddNewEvent extends Component {
                             name="price"
                             label="Price"
                             variant="outlined"
-                            onChange={this.handleTextFieldChange}
+                            value={this.state.price}
+                            onChange={this.TextFieldChangeHandler}
                             style={{
                                 width:'60%'
                             }}
@@ -237,9 +292,10 @@ class AddNewEvent extends Component {
                             required
                             id="outlined-basic"
                             name="imageUrl"
-                            label="Image Url"
+                            label="ImageUrl"
                             variant="outlined"
-                            onChange={this.handleTextFieldChange}
+                            value={this.state.imageUrl}
+                            onChange={this.TextFieldChangeHandler}
                             style={{
                                 width:'80%'
                             }}
@@ -291,8 +347,7 @@ class AddNewEvent extends Component {
                         />
                     </Grid>
                     <Grid item xs={6}>
-                    <KeyboardDatePicker 
-                            required
+                    <KeyboardDatePicker
                             margin="normal"
                             id="to-date-picker"
                             label="To Date"
@@ -311,7 +366,6 @@ class AddNewEvent extends Component {
                     <MuiPickersUtilsProvider utils={MomentUtils}>
                     <Grid item xs={6}>
                     <KeyboardTimePicker
-                            required
                             margin="normal"
                             id="from-time-picker"
                             label="From Time"
@@ -329,7 +383,6 @@ class AddNewEvent extends Component {
                     </Grid>
                     <Grid item xs={6}>
                     <KeyboardTimePicker
-                            required
                             margin="normal"
                             id="to-time-picker"
                             label="To Time"
@@ -356,7 +409,8 @@ class AddNewEvent extends Component {
                             multiline
                             rows={4}
                             defaultValue=""
-                            onChange={this.handleTextFieldChange}
+                            value={this.state.about}
+                            onChange={this.TextFieldChangeHandler}
                             style={{
                                 width:'80%'
                             }}
@@ -372,44 +426,43 @@ class AddNewEvent extends Component {
                             multiline
                             rows={4}
                             defaultValue=""
-                            onChange={this.handleTextFieldChange}
+                            value={this.state.terms}
+                            onChange={this.TextFieldChangeHandler}
                             style={{
                                 width:'80%'
                             }}
                         />
                     </Grid>
                     <Grid item xs={12}>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            size="large"
-                            startIcon={<SaveIcon />}
-                            //onClick={this.saveEvent}
-                            type = "submit"
-                        >
-                         Save
-                        </Button>
-
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            size="large"
-                            startIcon={<ArrowBackIcon />}
-                            onClick={this.redirectToPublishEvent}
-                            style={{
-                                margin:"5px"
-                            }}
-                        >
-                            Cancel
-                        </Button> 
+                    <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    startIcon={<SaveIcon />}
+                    //onClick={this.saveEvent}
+                    type = "submit"
+                >
+                    Update
+                    </Button>
+                    <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    startIcon={<ArrowBackIcon />}
+                    onClick={this.redirectToEventsList}
+                    style={{
+                        margin:"5px"
+                    }}
+                >
+                    Cancel
+                    </Button>
                     </Grid>
                 </Grid>
                
                 </Paper>
             </form >
             </div>
+            </div>
         );
     }
 }
-
-export default AddNewEvent;

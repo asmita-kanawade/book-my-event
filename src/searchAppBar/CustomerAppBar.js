@@ -14,27 +14,17 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-import { Link, Route } from 'react-router-dom';
-import SignInSide from '../SignIn/SignIn';
-import SignUp from '../SignUp/SignUp';
+import HomeIcon from '@material-ui/icons/Home';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import EventIcon from '@material-ui/icons/Event';
+import { Tooltip, Avatar, Slide } from '@material-ui/core';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
-import { confirmAlert } from 'react-confirm-alert'; 
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Slide from '@material-ui/core/Slide';
-
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { Link, Route } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
-    zIndex: 1000
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -44,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
+    paddingLeft:'10px'
   },
   search: {
     position: 'relative',
@@ -70,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   inputRoot: {
-    color: 'inherit',
+    color: 'inherit'
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -94,32 +85,12 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
-  btn: {
-    backgroundColor: '#3f51b5',
-    border: 'none',
-    color: 'white'
-  },
-  color: {
-    backgroundColor: '#00a1ab'
-  },
-  links: {
-    color: 'white',
-    textDecoration: 'none',
-    marginLeft: '15px',
-    textDecoration:'underline solid'
-  }
 }));
-
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-
 export default function PrimarySearchAppBar(props) {
-
-  //console.log(`[AppBar.js] props.history.location: ${JSON.stringify( props.history.location.pathname)}`);
-
-
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -139,17 +110,9 @@ export default function PrimarySearchAppBar(props) {
     setAlertOpen(false);
   };
 
+
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
-  };
-
-  const handleSignupOpen = (show) => {
-    setLogin(show);
-    setSignup(!show);
-  };
-  const handleLoginOpen = (show) => {
-    setSignup(show);
-    setLogin(!show);
   };
 
   const handleMobileMenuClose = () => {
@@ -165,25 +128,51 @@ export default function PrimarySearchAppBar(props) {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const logOut = () => {
-    sessionStorage.setItem('token', '');
-    sessionStorage.setItem('email', '');
-    sessionStorage.setItem('user_type', '');
+  
+const redirectToHome = () =>{
+  props.history.push({
+    pathname: `/`,
+  });
+}
 
-    if(pathname === "/")
-      window.location.reload(false);
-  }
-
-  const handlePublishEvent = () => {
-    if(sessionStorage.getItem('user_type')=="ADMIN")
+const myEvents = () =>{
     props.history.push({
-      pathname: `/publishEvent`
-    })
-    else {
-      handleOpenAlert();
-    }
-   
+      pathname: `/myEvents`,
+    });
   }
+
+
+const redirectToCreateEvent = () =>{
+  props.history.push({
+    pathname: `/addNewEvent`,
+  });
+}
+
+const redirectToBookings = () =>{
+  props.history.push({
+    pathname: `/bookings`,
+  });
+}
+
+const logOut = () => {
+  sessionStorage.setItem('token', '');
+  sessionStorage.setItem('email', '');
+  sessionStorage.setItem('user_type', '');
+
+  if(pathname === "/")
+    window.location.reload(false);
+}
+
+const handlePublishEvent = () => {
+  if(sessionStorage.getItem('user_type')=="ADMIN")
+  props.history.push({
+    pathname: `/publishEvent`
+  })
+  else {
+    handleOpenAlert();
+  }
+ 
+}
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -196,6 +185,8 @@ export default function PrimarySearchAppBar(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
+      <MenuItem onClick={logOut}>Logout</MenuItem>
+      {/* <MenuItem onClick={handleMenuClose}>My account</MenuItem> */}
     </Menu>
   );
 
@@ -210,7 +201,12 @@ export default function PrimarySearchAppBar(props) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-
+      <MenuItem onClick={redirectToHome}>
+        <IconButton aria-label="home" color="inherit">
+          <HomeIcon/>
+        </IconButton>
+        <p>Home</p>
+      </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           aria-label="account of current user"
@@ -219,32 +215,37 @@ export default function PrimarySearchAppBar(props) {
           color="inherit"
         >
           <AccountCircle />
-
         </IconButton>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-
-        </IconButton>
+        <p>Login</p>
       </MenuItem>
     </Menu>
   );
 
   return (
     <div className={classes.grow}>
-      <AppBar position="fixed" className={classes.color}>
+      <AppBar position="static">
         <Toolbar>
+          <Avatar src="favicon.ico" alt="B"></Avatar>
           <Typography className={classes.title} variant="h6" noWrap>
             Book My Event
           </Typography>
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder="Search…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ 'aria-label': 'search' }}
+              onChange = {props.changed}
+            />
+          </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <Typography className={classes.title} variant="h6" noWrap style={{ padding: '5px' }}>
+          {/* <Typography className={classes.title} variant="h6" noWrap style={{ padding: '5px' }}>
               {/* If user is at /home hide Home button */}
               {pathname === "/" ? 
               <></> : 
@@ -331,43 +332,23 @@ export default function PrimarySearchAppBar(props) {
                 </>: 
                 <></>
               }
-
-
-            </Typography>
+ 
           </div>
           <div className={classes.sectionMobile}>
+            <IconButton
+              aria-label="show more"
+              aria-controls={mobileMenuId}
+              aria-haspopup="true"
+              onClick={handleMobileMenuOpen}
+              color="inherit"
+            >
+              <MoreIcon />
+            </IconButton>
           </div>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
-      {showLogin ? <SignInSide /> : ""}
-      {showSignup ? <SignUp /> : ""}
-      <div>
-      <Dialog
-        open={alertOpen}
-        TransitionComponent={Transition}
-        keepMounted
-        onClose={handleCloseAlert}
-        aria-labelledby="alert-dialog-slide-title"
-        aria-describedby="alert-dialog-slide-description"
-      >
-        <DialogTitle id="alert-dialog-slide-title">{"Wants to publish event?"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-            <b>Only admin can publish events. If you want to publish your event, please email us on 'admin@events.in'.</b>
-            <p>Sorry for inconvenience..!</p>
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseAlert} color="primary">
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
-    {renderMobileMenu}
-    {renderMenu}
-    </div>
     </div>
   );
 }

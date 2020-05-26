@@ -1,0 +1,15 @@
+.logos-container{
+    position: relative;
+    margin: 5px;
+}
+.logos{
+    display: inline-flex;
+}
+.logos-container .MuiAvatar-root.MuiAvatar-circle.logos{
+    display: inline-flex;
+}
+p.logos{
+    position: relative;
+    bottom: 15px;
+    margin-left: 10px;
+}

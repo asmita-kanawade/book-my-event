@@ -1,0 +1,13 @@
+#editEvent.edit-container{
+    padding:20px;
+    background-color: #162447;
+}
+#editEvent .form-container{
+    margin-top: 20px;
+}
+.heading-edit{
+    text-align: left;
+    padding-left: 50px;
+    color: white;
+    margin: 0;
+}

@@ -8,8 +8,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import '../FeaturedCards/FeaturedCard.css';
-import moment from 'moment';
-
+import {getEventTimings} from '../Services/services'
 
 let value = false;
 
@@ -37,32 +36,6 @@ export default class CategorisedEvents extends React.Component {
 
   }  
   
-  getEventTimings = (event) => {
-    let dateAndTime = '';
-
-    if (event.to_date === event.from_date) {
-      // dateAndTime = event.to_date;
-      dateAndTime = moment(event.to_date, "YYYYMMDD").format(`MMM Do`);
-
-      if (event.from_time === event.to_time)
-        dateAndTime += ' | ' + moment(event.to_time, "HHmmss").format(`HH:mm`);
-      else
-        dateAndTime += ' | ' + moment(event.from_time, "HHmmss").format(`HH:mm`) + "-" + moment(event.to_time, "HHmmss").format(`HH:mm`);
-
-    }
-    else {
-      dateAndTime = moment(event.from_date, "YYYYMMDD").format(`MMM Do`) + " to " + moment(event.to_date, "YYYYMMDD").format(`MMM Do`);
-
-      if (event.from_time === event.to_time)
-        dateAndTime += ' | ' + moment(event.to_time, "HHmmss").format(`HH:mm`);
-      else
-        dateAndTime += ' | ' + moment(event.from_time, "HHmmss").format(`HH:mm`) + "-" + moment(event.to_time, "HHmmss").format(`HH:mm`);
-
-    }
-
-    return dateAndTime;
-  }
-
 
   addActiveClass(index) {
     //  document.getElementById(''`${index}`).style.display='none';
@@ -74,7 +47,7 @@ export default class CategorisedEvents extends React.Component {
     //console.log('see what events contain' + JSON.stringify(this.state.events));
     const redirectToDisplayEvent = (event) => {
       this.props.history.push({
-        pathname: `/displayEvent`,
+        pathname: `/show-event`,
         state: { event: event }
       });
     }
@@ -106,11 +79,11 @@ export default class CategorisedEvents extends React.Component {
                     title={event.title}
                   />
                   <CardContent>
-                        <Typography className="card-content title"><b>{event.title}</b></Typography>
-                        <Typography className="card-content">{this.getEventTimings(event)}</Typography>
-                        <Typography className="card-content">{event.city}</Typography>
-                        <Typography className="card-content">₹ {event.price}</Typography>
-                    </CardContent>
+                      <Typography className="card-content title">{event.title.length >=40 ?event.title.substring(0, 40)+ "..." : <div>{event.title.substring(0, event.title.length)}</div>}</Typography>
+                      <Typography className="card-content">{getEventTimings(event)}</Typography>
+                      <Typography className="card-content">{event.city}</Typography>
+                      <Typography className="card-content">₹ {event.price}</Typography>
+                  </CardContent>
                 </CardActionArea>
                 <CardActions style={{ position: 'relative' }}>
                   {/* <FavoriteBorderIcon className="favUnfilledIcon" size="small" onClick={(e) => handleChange(e)}>

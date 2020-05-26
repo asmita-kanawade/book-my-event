@@ -12,3 +12,12 @@
 .PrivateTabIndicator-root-258.PrivateTabIndicator-colorSecondary-260.MuiTabs-indicator{
     background-color: black;
 }
+.carouselContainer{
+    margin-top: -51px;
+    height: 384px;
+    width: 100%;
+    background-color:#162447; 
+  }
+  .home-container{
+    background-color: white;
+}

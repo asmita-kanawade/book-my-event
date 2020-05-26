@@ -21,7 +21,7 @@ function Project(props)
     const redirectToEvent = (item) => {
         //console.log(`redirectToEvent-item: ${JSON.stringify(item)}`);
         props.history.push({
-            pathname:`/displayEvent`,
+            pathname:`/show-event`,
             state: {event: item}
         });
     }

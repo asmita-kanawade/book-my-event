@@ -170,6 +170,7 @@ export default function SignInSide(props) {
                 setPassword(event.target.value)
               }
               }
+              onSubmit={(event) => handleSignIn(event)}
             />
             {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -186,9 +187,9 @@ export default function SignInSide(props) {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link to="#" variant="body2">
+                {/* <Link to="#" variant="body2">
                   Forgot password?
-                </Link>
+                </Link> */}
               </Grid>
               <Grid item>
                 <Link to="/signup" variant="body2">
@@ -205,7 +206,7 @@ export default function SignInSide(props) {
     </Grid>
 
     <div className={classes.root} style={{ width: '100%'
-   }}>
+    }}>
       <Snackbar open={open} autoHideDuration={5000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error">
           {loginError}

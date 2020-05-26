@@ -12,6 +12,7 @@ import '../FeaturedCards/FeaturedCard.css'
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import {getEventTimings} from '../Services/services';
 
 export default class FeaturedEvents extends React.Component {
   constructor(props) {
@@ -25,35 +26,9 @@ export default class FeaturedEvents extends React.Component {
 
 
 
-  getEventTimings = (event) => {
-    let dateAndTime = '';
-
-    if (event.to_date === event.from_date) {
-      // dateAndTime = event.to_date;
-      dateAndTime = moment(event.to_date, "YYYYMMDD").format(`MMM Do`);
-
-      if (event.from_time === event.to_time)
-        dateAndTime += ' | ' + moment(event.to_time, "HHmmss").format(`HH:mm`);
-      else
-        dateAndTime += ' | ' + moment(event.from_time, "HHmmss").format(`HH:mm`) + "-" + moment(event.to_time, "HHmmss").format(`HH:mm`);
-
-    }
-    else {
-      dateAndTime = moment(event.from_date, "YYYYMMDD").format(`MMM Do`) + " to " + moment(event.to_date, "YYYYMMDD").format(`MMM Do`);
-
-      if (event.from_time === event.to_time)
-        dateAndTime += ' | ' + moment(event.to_time, "HHmmss").format(`HH:mm`);
-      else
-        dateAndTime += ' | ' + moment(event.from_time, "HHmmss").format(`HH:mm`) + "-" + moment(event.to_time, "HHmmss").format(`HH:mm`);
-
-    }
-
-    return dateAndTime;
-  }
-
     redirectToDisplayEvent = (event) => {
       this.props.history.push({
-        pathname: `/displayEvent`,
+        pathname: `/show-event`,
         state: { event: event }
       });
     }
@@ -122,8 +97,9 @@ export default class FeaturedEvents extends React.Component {
                               />
                              
                               <CardContent>
-                              <Typography className="card-content title">{event.title}</Typography>
-                                <Typography className="card-content">{this.getEventTimings(event)}</Typography>
+
+                        <Typography className="card-content title">{event.title.length >=40 ?event.title.substring(0, 40)+ "..." : event.title.substring(0, event.title.length)}</Typography>
+                                <Typography className="card-content">{getEventTimings(event)}</Typography>
                                 <Typography className="card-content">{event.city}</Typography>
                                 <Typography className="card-content">₹ {event.price}</Typography>
                               </CardContent>

@@ -10,7 +10,13 @@ import Paper from '@material-ui/core/Paper';
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
-import AutoPlayCarousel from '../CarouselItemsForFeaturedEvents/AutoPlayCarousel'
+import AutoPlayCarousel from '../CarouselItemsForFeaturedEvents/AutoPlayCarousel';
+import GeneralAppBar from '../searchAppBar/GeneralAppBar';
+import CustomerAppBar from '../searchAppBar/CustomerAppBar';
+import AdminAppBar from '../searchAppBar/AdminAppBar';
+import { Grid, CircularProgress, Backdrop, Card, AppBar } from '@material-ui/core';
+
+import MainAppBar from '../AppBar/AppBar';
 
 
 export default class Home extends React.Component {
@@ -41,15 +47,17 @@ export default class Home extends React.Component {
     }
 
     render() {
-        console.log(this.state.events.length);
-
+        
+         
         return (
 
-            <div> 
+            <div className="home-container"> 
+                {/* <PrimarySearchAppBar history={this.props.history}/> */}
+                {/* <CustomerAppBar  history={this.props.history}></CustomerAppBar> */}
 
-                <PrimarySearchAppBar login={this.state.isLoggedIn} history={this.props.history} />
-                {this.state.events.length > 0 ?
-                    <div>
+                <MainAppBar history={this.props.history}/> 
+                { this.state.events.length > 0 ?
+                    <>
                         <div className='carouselContainer'>
                             <CarouselComponent
                                 events={this.state.events}
@@ -66,10 +74,14 @@ export default class Home extends React.Component {
                         <CategoryTabs
                             events={this.state.events}
                             history={this.props.history} />
-                    </div>
-                    : ""
+                    </>
+                    : (
+                        <Backdrop style={{color: '#eee'}} open={true} >
+                            <CircularProgress color="inherit" /> 
+                        </Backdrop> 
+                    )
                 }
-            </div>
+                </div>
         )
     }
 }

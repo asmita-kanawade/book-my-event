@@ -1,0 +1,12 @@
+#booking-details #category-tag{
+    left: 9px;
+    bottom: 9px;
+}
+.bookings-paper{
+    width: 90%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+.bookings-paper h3{
+    padding-top: 10px;
+}

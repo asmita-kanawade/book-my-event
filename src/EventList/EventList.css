@@ -1,0 +1,47 @@
+.event-image{
+    width: 210px;
+    height: 130px;
+    border: 1px solid grey;
+    margin-top: 5px;
+    display: inline-block;
+    /* position: relative;
+    top: 10px; */
+}
+.event-list-cards{
+    position: relative;
+    text-align: left;
+    padding: 20px;
+}
+.event-list-cards>*{
+    display: inline-block;
+    vertical-align: top;
+}
+.event-list-cards .booked-event-tags.ttl{
+    margin-top: 0;
+}
+.event-list-paper{
+    width: 80%;
+    margin: 10px auto;
+}
+.event-list-buttons>*{
+    margin: 10px;
+}
+.event-list-buttons{
+    position: absolute; 
+    right: 0;
+    display: inline-block;
+    width: 15%;
+    cursor: pointer; 
+    vertical-align: bottom;
+}
+.event-list-tags-container{
+    display: inline-block;
+}
+.published-event-topbox{
+    position: relative;
+}
+.published-event-topbox > *{
+    display: inline-block;
+    margin-right: 40px;
+    margin-top: 10px;
+}
