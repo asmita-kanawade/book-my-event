@@ -11,13 +11,15 @@ import { getEventTimings } from '../Services/services';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import { Grid, CircularProgress, Backdrop, Card, AppBar } from '@material-ui/core';
+import { confirmAlert } from 'react-confirm-alert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css'; 
 
 
 export default class EventsList extends Component {
   
     state = {
         events: [],
-        eventsCopy: []
+        eventsCopy: [],
       }
 
     componentWillMount() {
@@ -70,7 +72,36 @@ export default class EventsList extends Component {
       
     }
 
+    confirmDelete = () => {
+      confirmAlert({
+        customUI: ({ onClose }) => {
+          return (
+            <div className='custom-ui'>
+              <h1>Are you sure?</h1>
+              <p>You want to delete this file?</p>
+              <button onClick={onClose}>No</button>
+              <button
+                onClick={() => {
+                  this.handleClickDelete();
+                  onClose();
+                }}
+              >
+                Yes, Delete it!
+              </button>
+            </div>
+          );
+        }
+      });
+    }
+
+    handleClickDelete = () => 
+    {
+      console.log("deleted successfully..!");
+      
+    }
+
     deleteEvent = (eventID) => {
+      
       Axios({
         url: "https://book-my-events.herokuapp.com/delete-event",
         // url: "http://localhost:2001/api/delete-blog",
@@ -143,8 +174,9 @@ export default class EventsList extends Component {
               </Tooltip>
 
               <Tooltip title="Delete">
-                <DeleteIcon
-                onClick={this.deleteEvent.bind(this, event._id)}/>
+                <DeleteIcon 
+                //onClick={this.deleteEvent.bind(this, event._id)}/>
+                onClick={this.confirmDelete.bind(this, event._id)}/>
               </Tooltip>
           </div>
           </div>

@@ -257,7 +257,7 @@ export default function MainAppBar(props) {
             </IconButton>
             <p>Organize Event</p>
         </MenuItem>
-        : ""
+        :<span></span>
       }
 
 
@@ -269,12 +269,12 @@ export default function MainAppBar(props) {
             </IconButton>
             <p>My Bookings</p>
         </MenuItem>
-        : ""
+        : <span></span>
     }
 
     {/* Admin Menu */}
     {   token && userType === 'ADMIN' ? ( 
-        <>
+        <div>
             <MenuItem onClick={redirectToAllBookings}>
                 <IconButton aria-label="all-bookings" color="inherit">
                 <EventIcon/>
@@ -288,8 +288,8 @@ export default function MainAppBar(props) {
                 </IconButton>
                 <p>Publish Event</p>
             </MenuItem>
-        </> ) 
-        : ""
+        </div> ) 
+        : <span></span>
     }
 
     {/* Logon Menu */}
@@ -442,18 +442,18 @@ export default function MainAppBar(props) {
       >
         <DialogTitle id="alert-dialog-slide-title">{"Wants to publish your event here?"}</DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
+          <div id="alert-dialog-slide-description">
             <b className="b">To publish your event contact us on following email or whatsApp number.</b>
 
-            <div className="logos-container">
-              <Avatar src="emailLogo.png" className="logos"></Avatar><p className="logos">publish@bookmyevent.com</p>   
-            </div> 
-            <div className="logos-container">
-              <Avatar src="whatsAppLogo.png" className="logos"></Avatar><p className="logos">+91-9923899300</p>
-            </div>
+            <span className="logos-container">
+              <Avatar src="emailLogo.png" className="logos"></Avatar><span className="logos">publish@bookmyevent.com</span>   
+            </span> 
+            <span className="logos-container">
+              <Avatar src="whatsAppLogo.png" className="logos"></Avatar><span className="logos">+91-9923899300</span>
+            </span>
            
            <b>Looking forward to get your call..!!</b>
-          </DialogContentText>
+          </div>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCloseAlert} color="primary">

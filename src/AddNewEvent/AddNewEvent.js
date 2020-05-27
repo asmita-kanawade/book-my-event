@@ -20,6 +20,8 @@ class AddNewEvent extends Component {
     constructor(props) {
 
         super(props);
+        this.saveEvent = this.saveEvent.bind(this);
+        this.wrapper = React.createRef();
         this.state = {
             isFeatured: true,
             showInBanner: true
@@ -65,6 +67,8 @@ class AddNewEvent extends Component {
 
     // save the event data
     saveEvent = (evt) => {
+        console.log("got clicked by save event");
+        
         evt.preventDefault();
         let token = sessionStorage.getItem('token');
 
@@ -120,6 +124,7 @@ class AddNewEvent extends Component {
     render() {
         return (
             <div className="form-container-addNew">
+                 <MainAppBar history={this.props.history} />
             <form
                 onSubmit={this.saveEvent}
                 style={{
@@ -132,9 +137,7 @@ class AddNewEvent extends Component {
                 }}
                 autoComplete="off"
             >
-                <MainAppBar history={this.props.history} />
-               
-                <Paper  className="form-container">
+                <Paper  className="form-container" ref={this.wrapper}>
                 <h3 className="heading-addNew">Add New Event</h3>
                 <Grid container spacing={3} style={{
                     margin:"20px"
@@ -272,9 +275,10 @@ class AddNewEvent extends Component {
                             />
                     </Grid>
                     <MuiPickersUtilsProvider utils={MomentUtils}>
-                    <Grid item xs={6}>
+                    <Grid item xs={6} ref={this.wrapper}>
                     <KeyboardDatePicker
                             required
+                            name="from_date"
                             margin="normal"
                             id="from-date-picker"
                             label="From Date"
@@ -289,9 +293,10 @@ class AddNewEvent extends Component {
                             }}
                         />
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={6} ref={this.wrapper}>
                     <KeyboardDatePicker 
                             required
+                            name="to_date"
                             margin="normal"
                             id="to-date-picker"
                             label="To Date"
@@ -308,9 +313,10 @@ class AddNewEvent extends Component {
                     </Grid>
                     </MuiPickersUtilsProvider>
                     <MuiPickersUtilsProvider utils={MomentUtils}>
-                    <Grid item xs={6}>
+                    <Grid item xs={6} ref={this.wrapper}>
                     <KeyboardTimePicker
                             required
+                            name="from_time"
                             margin="normal"
                             id="from-time-picker"
                             label="From Time"
@@ -326,9 +332,10 @@ class AddNewEvent extends Component {
                             }}
                         />
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid item xs={6} ref={this.wrapper}>
                     <KeyboardTimePicker
                             required
+                            name="to_time"
                             margin="normal"
                             id="to-time-picker"
                             label="To Time"
