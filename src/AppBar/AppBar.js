@@ -257,7 +257,7 @@ export default function MainAppBar(props) {
             </IconButton>
             <p>Organize Event</p>
         </MenuItem>
-        :<span></span>
+        : ""
       }
 
 
@@ -269,7 +269,7 @@ export default function MainAppBar(props) {
             </IconButton>
             <p>My Bookings</p>
         </MenuItem>
-        : <span></span>
+        : ""
     }
 
     {/* Admin Menu */}
@@ -289,7 +289,7 @@ export default function MainAppBar(props) {
                 <p>Publish Event</p>
             </MenuItem>
         </div> ) 
-        : <span></span>
+        : ""
     }
 
     {/* Logon Menu */}
@@ -442,18 +442,18 @@ export default function MainAppBar(props) {
       >
         <DialogTitle id="alert-dialog-slide-title">{"Wants to publish your event here?"}</DialogTitle>
         <DialogContent>
-          <div id="alert-dialog-slide-description">
+          <DialogContentText id="alert-dialog-slide-description">
             <b className="b">To publish your event contact us on following email or whatsApp number.</b>
 
-            <span className="logos-container">
-              <Avatar src="emailLogo.png" className="logos"></Avatar><span className="logos">publish@bookmyevent.com</span>   
-            </span> 
-            <span className="logos-container">
-              <Avatar src="whatsAppLogo.png" className="logos"></Avatar><span className="logos">+91-9923899300</span>
-            </span>
+            <div className="logos-container">
+              <Avatar src="emailLogo.png" className="logos"></Avatar><p className="logos">publish@bookmyevent.com</p>   
+            </div> 
+            <div className="logos-container">
+              <Avatar src="whatsAppLogo.png" className="logos"></Avatar><p className="logos">+91-9923899300</p>
+            </div>
            
            <b>Looking forward to get your call..!!</b>
-          </div>
+          </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCloseAlert} color="primary">
