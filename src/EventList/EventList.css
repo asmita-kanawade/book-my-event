@@ -45,3 +45,18 @@
     margin-left: 40px;
     margin-top: 10px;
 }
+.custom-ui{
+    padding: 30px;
+    background-color: white;
+    box-shadow: 1px 1px 4px 1px crimson;
+}
+.custom-ui>button{
+    margin: 5px;
+    height: 44px;
+    width: 110px;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: crimson;
+    color: white;
+    cursor: pointer;
+}

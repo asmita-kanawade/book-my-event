@@ -15,16 +15,20 @@ import '../AddNewEvent/AddNewEvent.css';
 import Paper from '@material-ui/core/Paper';
 import MainAppBar from '../AppBar/AppBar';
 import CancelIcon from '@material-ui/icons/Cancel';
+import moment from 'moment';
 
 class AddNewEvent extends Component {
     constructor(props) {
 
         super(props);
         this.saveEvent = this.saveEvent.bind(this);
-        this.wrapper = React.createRef();
         this.state = {
             isFeatured: true,
-            showInBanner: true
+            showInBanner: true,
+            from_date: moment().format('YYYYMMDD'),
+            to_date: moment().format('YYYYMMDD'),
+            from_time: moment(),
+            to_time: moment(),
         }
     }
 
@@ -137,7 +141,7 @@ class AddNewEvent extends Component {
                 }}
                 autoComplete="off"
             >
-                <Paper  className="form-container" ref={this.wrapper}>
+                <Paper  className="form-container">
                 <h3 className="heading-addNew">Add New Event</h3>
                 <Grid container spacing={3} style={{
                     margin:"20px"
@@ -275,7 +279,7 @@ class AddNewEvent extends Component {
                             />
                     </Grid>
                     <MuiPickersUtilsProvider utils={MomentUtils}>
-                    <Grid item xs={6} ref={this.wrapper}>
+                    <Grid item xs={6}>
                     <KeyboardDatePicker
                             required
                             name="from_date"
@@ -293,7 +297,7 @@ class AddNewEvent extends Component {
                             }}
                         />
                     </Grid>
-                    <Grid item xs={6} ref={this.wrapper}>
+                    <Grid item xs={6}>
                     <KeyboardDatePicker 
                             required
                             name="to_date"
@@ -313,7 +317,7 @@ class AddNewEvent extends Component {
                     </Grid>
                     </MuiPickersUtilsProvider>
                     <MuiPickersUtilsProvider utils={MomentUtils}>
-                    <Grid item xs={6} ref={this.wrapper}>
+                    <Grid item xs={6}>
                     <KeyboardTimePicker
                             required
                             name="from_time"
@@ -332,7 +336,7 @@ class AddNewEvent extends Component {
                             }}
                         />
                     </Grid>
-                    <Grid item xs={6} ref={this.wrapper}>
+                    <Grid item xs={6}>
                     <KeyboardTimePicker
                             required
                             name="to_time"
