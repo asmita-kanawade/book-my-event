@@ -99,7 +99,7 @@ class ExpandEvent extends Component {
           label: 'No',
           onClick: () => {
             this.props.history.push({
-              pathname: `/displayEvent`,
+              pathname: `/show-event`,
               state: { event }
             });
           }
