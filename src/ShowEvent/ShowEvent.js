@@ -39,8 +39,11 @@ class ExpandEvent extends Component {
     }
 
 
-    openCheckout = async () => {
+    openCheckout = async (event) => {
 
+      let token = sessionStorage.getItem('token');
+
+      if (token) {
       let options = {
           "key": "rzp_test_uAcXkABCnOzHHX", // Enter the Key ID generated from the Dashboard
           "amount": this.state.event.price * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
@@ -78,14 +81,38 @@ class ExpandEvent extends Component {
 
       let rzp = new window.Razorpay(options);
       rzp.open();    
-
+    }
+    else confirmAlert({
+      title: 'To book this event you should login first',
+      message: 'Do you want to login Now?',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => {
+            this.props.history.push({
+              pathname: `/login`,
+              state: { event }
+            });
+          }
+        },
+        {
+          label: 'No',
+          onClick: () => {
+            this.props.history.push({
+              pathname: `/displayEvent`,
+              state: { event }
+            });
+          }
+        }
+      ]
+    });
   }
 
 
   bookEvent = (event) => {
     let token = sessionStorage.getItem('token');
 
-    if (token) {
+    //  if (token) {
 
       Axios({
         method: `POST`,
@@ -101,12 +128,6 @@ class ExpandEvent extends Component {
 
           if (resp.data.status === 'success') {
             //console.log("events is booked");
-
-            //await this.openCheckout(event);
-
-            // sessionStorage.setItem('token', resp.data.auth_token);
-            // sessionStorage.setItem('email', resp.data.email);
-
             this.redirectToMyEvents();
           }
           else {
@@ -120,35 +141,7 @@ class ExpandEvent extends Component {
     
         });
 
-    }
-    else {
-     
-      // confirmAlert(this.state.options); 
-      confirmAlert({
-        title: 'To book this event you should login first',
-        message: 'Do you want to login Now?',
-        buttons: [
-          {
-            label: 'Yes',
-            onClick: () => {
-              this.props.history.push({
-                pathname: `/login`,
-                state: { event }
-              });
-            }
-          },
-          {
-            label: 'No',
-            onClick: () => {
-              this.props.history.push({
-                pathname: `/displayEvent`,
-                state: { event }
-              });
-            }
-          }
-        ]
-      });
-    }
+    
   }
 
 
@@ -193,14 +186,10 @@ class ExpandEvent extends Component {
               <div
                 className='event-booking'
                 //onClick={() => { this.bookEvent(this.state.event) }}
-                onClick={() => { this.openCheckout() }}
+                onClick={() => { this.openCheckout(this.state.event) }}
               >
                 <p id='book-now'>Book now</p>
               </div>
-              {/* <div
-                style={{
-                  backgroundImage: `url(${process.env.PUBLIC_URL}'/fav-icon.jpg')`
-                }} className='fav-icon'> </div> */}
             </div>
           </div>
         </div>
