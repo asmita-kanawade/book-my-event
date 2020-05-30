@@ -140,12 +140,7 @@ class ExpandEvent extends Component {
           }    
     
         });
-
-    
   }
-
-
-
   render() {
 
     return (

@@ -65,7 +65,7 @@ export default class FeaturedEvents extends React.Component {
           responsive={responsive}
           ssr={true} // means to render carousel on server-side.
           infinite={true}
-          autoPlay={this.props.deviceType !== "mobile" ? true : false}
+          autoPlay={this.props.deviceType !== "mobile" ? false : false}
           autoPlaySpeed={1000}
           keyBoardControl={true}
           customTransition="all .5"
