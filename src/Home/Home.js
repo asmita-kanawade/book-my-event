@@ -31,7 +31,7 @@ export default class Home extends React.Component {
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
 
        // Axios.post(`http://localhost:3002/api/search-event`)
         Axios.post(`https://book-my-events.herokuapp.com/api/search-event`)

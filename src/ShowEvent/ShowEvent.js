@@ -23,6 +23,7 @@ class ExpandEvent extends Component {
       open: false
     }
 
+    
     handleClose = (event, reason) => {
       if (reason === 'clickaway') {
         return;
@@ -35,6 +36,12 @@ class ExpandEvent extends Component {
     redirectToMyEvents = () => {
       this.props.history.push({
         pathname: `/my-bookings`
+      });
+    }
+
+    redirectToHome = () => {
+      this.props.history.push({
+        pathname: `/`
       });
     }
 
@@ -111,7 +118,7 @@ class ExpandEvent extends Component {
 
   bookEvent = (event) => {
     let token = sessionStorage.getItem('token');
-
+   
     //  if (token) {
 
       Axios({
@@ -142,7 +149,7 @@ class ExpandEvent extends Component {
         });
   }
   render() {
-
+  
     return (
       <>
       <MainAppBar history={this.props.history}/> 

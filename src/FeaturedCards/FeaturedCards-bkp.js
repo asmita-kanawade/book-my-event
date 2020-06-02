@@ -37,7 +37,7 @@ export default class FeaturedEvents extends React.Component {
 
   }
 
-  componentWillMount() {
+  componentDidMount() {
   }
 
  

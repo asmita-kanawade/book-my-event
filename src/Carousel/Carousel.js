@@ -62,7 +62,7 @@ export default class CarouselComponent extends React.Component
                     style={{
                         width:"100%",
                         margin: "auto",
-                        paddingTop:"120px",
+                        paddingTop:"90px",
                         zIndex: 2
                     }}
                     >

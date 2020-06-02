@@ -20,7 +20,9 @@ export default class MyBookings extends Component {
   
 
   componentDidMount() {
-
+    let token = sessionStorage.getItem('token');
+    if(token){
+        
     Axios({
       method: `POST`,
       // url: `http://localhost:3002/search-booked-events`,
@@ -40,10 +42,20 @@ export default class MyBookings extends Component {
         this.setState({ isLoggedIn:true })
      }
 
+    }
+    else 
+    {
+      this.redirectToLogin();
+    }
+
 
   }
 
+  redirectToLogin = () => {
+    this.props.history.push({
+      pathname:`/login` })
 
+   }
 
   render() {
       return(

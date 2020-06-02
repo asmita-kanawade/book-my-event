@@ -99,10 +99,12 @@ export default function BookingDetails(props) {
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Sr.No.</StyledTableCell>
+            <StyledTableCell>Sr. No.</StyledTableCell>
             <StyledTableCell align="right">Customer Name</StyledTableCell>
             <StyledTableCell align="right">Email</StyledTableCell>
             <StyledTableCell align="right">Payment ID</StyledTableCell>
+            <StyledTableCell align="right">Booking ID</StyledTableCell>
+
           </TableRow>
         </TableHead>
         <TableBody>
@@ -114,6 +116,8 @@ export default function BookingDetails(props) {
               <StyledTableCell align="right"> {row.customer.firstname} {row.customer.lastname}</StyledTableCell>
               <StyledTableCell align="right">{row.customer.email}</StyledTableCell>
               <StyledTableCell align="right">{row.payment_id}</StyledTableCell>
+              <StyledTableCell align="right">{row._id}</StyledTableCell>
+
             </StyledTableRow>
           ))}
         </TableBody>

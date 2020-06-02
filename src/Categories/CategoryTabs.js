@@ -74,10 +74,13 @@ export default class CategoryTabs extends React.Component {
         }
     }
 
-    async componentWillMount() {
+    async componentDidMount() {
         let uniqueCategories = await getUniqueCategories(this.state.events);
         this.setState({ uniqueCategories });
+        
+              
     }
+
 
     handleChange = (event, newValue) => {
         this.setState({ value: newValue });

@@ -17,7 +17,10 @@ export default class Bookings extends Component {
         allBookings: []
       }
 
-    componentWillMount() {
+    componentDidMount() {
+      let token = sessionStorage.getItem('token');
+
+      if(token){
         //  Axios.post(`http://localhost:3002/api/search-bookings`)
          Axios.post(`https://book-my-events.herokuapp.com/api/search-bookings`)
              .then(async res => {      
@@ -27,9 +30,20 @@ export default class Bookings extends Component {
                  this.setState({ allBookings: res.data });
                  //console.log(`[Bookings.js] events: ${this.state.events.length}`);
              });
+          }
+          else 
+          {
+            this.redirectToLogin();
+          }
  
      }
 
+     redirectToLogin = () => {
+      this.props.history.push({
+        pathname:`/login` })
+
+     }
+ 
      redirectToBookingDetails = (eventID) => {
        //console.log("redirecting to details..!");
        

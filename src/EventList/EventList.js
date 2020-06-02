@@ -23,6 +23,11 @@ export default class EventsList extends Component {
   }
 
   componentDidMount() {
+    let token = sessionStorage.getItem('token');
+    if(!token){
+      this.redirectToLogin();
+    }
+    else
     this.getEvents();
   }
 
@@ -39,6 +44,12 @@ export default class EventsList extends Component {
   redirectToAddNewEvent = () => {
     this.props.history.push({
       pathname: `/add-new-event`,
+    });
+  }
+
+  redirectToLogin = () => {
+    this.props.history.push({
+      pathname: `/login`,
     });
   }
 
