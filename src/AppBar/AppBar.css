@@ -13,3 +13,13 @@ p.logos{
     bottom: 15px;
     margin-left: 10px;
 }
+.snack-bar-container{
+    position: relative !important;
+    top: 4em;
+    left: 4em;
+}
+.snack-bar{
+    position: absolute !important;
+    top: 0;
+    left: 0;
+}

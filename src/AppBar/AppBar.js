@@ -30,6 +30,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import './AppBar.css';
 
 
@@ -105,10 +106,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },
-  },
-  Snackbar:{
-    position:'absolute',
-    top:'10px'
   }
 }));
 
@@ -294,7 +291,7 @@ export default function MainAppBar(props) {
 
     {/* Logon Menu */}
     { !token ? (  
-      <>        
+      <Toolbar>        
       <MenuItem onClick={redirectToLogin}>
         <IconButton aria-label="login" color="inherit">
             <AccountCircle />
@@ -309,7 +306,7 @@ export default function MainAppBar(props) {
         </IconButton>
         <p>Signup</p>
       </MenuItem>
-      </>
+      </Toolbar>
       ) : (
       <MenuItem onClick={logOut}>
         <IconButton aria-label="logout" color="inherit">
@@ -368,7 +365,7 @@ export default function MainAppBar(props) {
             {   token && userType === 'USER' ? 
                 <Tooltip title="My Bookings">
                     <IconButton aria-label="my-bookings" color="inherit" onClick={redirectToMyBookings}>
-                        <EventIcon/>    
+                        <EventAvailableIcon/>    
                     </IconButton>
                 </Tooltip>
                 : ""
@@ -376,11 +373,17 @@ export default function MainAppBar(props) {
 
             {/* Admin Menu */}
             {   token && userType === 'ADMIN' ? ( 
-                <>
+                <div>
                     <Tooltip title="All Bookings">
                         <IconButton aria-label="all-bookings" color="inherit" onClick={redirectToAllBookings}>
                             <EventIcon/>    
                         </IconButton>
+                    </Tooltip>
+
+                    <Tooltip title="My Bookings">
+                      <IconButton aria-label="my-bookings" color="inherit" onClick={redirectToMyBookings}>
+                          <EventAvailableIcon/>    
+                      </IconButton>
                     </Tooltip>
 
                     <Tooltip title="Publish Event">
@@ -388,13 +391,13 @@ export default function MainAppBar(props) {
                             <AddCircleIcon></AddCircleIcon>
                         </IconButton>
                     </Tooltip>
-                </> ) 
+                </div> ) 
                 : ""
             }
 
             {/* Logon Menu */}
             { !token ? (  
-            <>        
+            <div>        
                 <Tooltip title="Login">
                     <IconButton aria-label="login" color="inherit" onClick={redirectToLogin}>
                         <AccountCircle />
@@ -406,7 +409,7 @@ export default function MainAppBar(props) {
                         <HowToRegIcon />
                     </IconButton>
                 </Tooltip>
-            </> 
+            </div> 
             ) : 
                 <Tooltip title="Logout">
                     <IconButton aria-label="logout" color="inherit" onClick={logOut}>
@@ -462,13 +465,15 @@ export default function MainAppBar(props) {
         </DialogActions>
       </Dialog>
 
-      <div className={classes.root, classes.Snackbar}>
-        <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleClose}>
+    <div className="snack-bar-container">
+      <div className={classes.root}>
+        <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleClose} className="snack-bar">
             <Alert onClose={handleClose} severity="info">
                 Succesfully logged out!
             </Alert>
         </Snackbar>
-       </div> 
+        </div> 
+      </div>
     </div>
   );
 }

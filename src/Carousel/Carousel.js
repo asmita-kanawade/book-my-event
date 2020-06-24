@@ -42,9 +42,16 @@ export default class CarouselComponent extends React.Component
 
     redirectToEvent = (item) => {
         //console.log(`redirectToEvent-item: ${JSON.stringify(item)}`);
+        const queryParams = [];
+        
+        queryParams.push(encodeURIComponent("_id") + '=' + encodeURIComponent(item._id));
+       
+        const queryString = queryParams.join('&');
+        //console.log(queryString);
+        
         this.props.history.push({
             pathname:`/show-event`,
-            state: {event: item}
+            search:'?' +queryString
         });
     }
     

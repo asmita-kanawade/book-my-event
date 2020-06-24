@@ -100,6 +100,7 @@ export default function BookingDetails(props) {
         <TableHead>
           <TableRow>
             <StyledTableCell>Sr. No.</StyledTableCell>
+            <StyledTableCell align="right">Booking Date</StyledTableCell>
             <StyledTableCell align="right">Customer Name</StyledTableCell>
             <StyledTableCell align="right">Email</StyledTableCell>
             <StyledTableCell align="right">Payment ID</StyledTableCell>
@@ -113,6 +114,7 @@ export default function BookingDetails(props) {
               <StyledTableCell component="th" scope="row">
                {index+1}
               </StyledTableCell>
+              <StyledTableCell align="right"> {row.booking_date}</StyledTableCell>
               <StyledTableCell align="right"> {row.customer.firstname} {row.customer.lastname}</StyledTableCell>
               <StyledTableCell align="right">{row.customer.email}</StyledTableCell>
               <StyledTableCell align="right">{row.payment_id}</StyledTableCell>

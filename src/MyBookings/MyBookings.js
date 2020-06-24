@@ -70,8 +70,18 @@ export default class MyBookings extends Component {
                 <div className="evt-grid">
                 
                   {this.state.events.map((event, index) => {
+                    let date;
+                    if(event.booking_date != undefined){
+                      date = event.booking_date.substring(0,10);
+                    }
+                                          
                     return <div key={index}  className="event-cards-container">
                       <Card key={index}  className="event-cards">
+                        <div>
+                        <p className='booked-event-tags'>Booking Date: {date}</p>
+                        <p className='booked-event-tags'>Booking ID: {event.id}</p>
+                        <p className='booked-event-tags'>Payment ID {event.payment_id}</p>
+                        </div>
                         <img src={event.imageUrl} id="booked-event-img" />
                         <div className='booked-event-tags-container'>
                           <p className='booked-event-tags ttl'>{event.title.length >=28 ?event.title.substring(0, 25)+ "..." : event.title.substring(0, event.title.length)}</p>
@@ -96,7 +106,8 @@ export default class MyBookings extends Component {
             )
             : (
               <Backdrop style={{color: '#eee'}} open={true} >
-                <CircularProgress color="inherit" /> 
+                 <h2>Redirecting to your bookings...</h2>
+                  <CircularProgress color="inherit" /> 
               </Backdrop> 
               ) 
             }

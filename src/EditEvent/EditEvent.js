@@ -13,7 +13,6 @@ import SaveIcon from '@material-ui/icons/Save';
 import CancelIcon from '@material-ui/icons/Cancel';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
-import AdminAppBar from '../PublishEvent/AdminAppBar';
 import '../EditEvent/EditEvent.css';
 import MainAppBar from '../AppBar/AppBar';
 
@@ -77,8 +76,8 @@ export default class EditEvent extends React.Component {
 
     TextFieldSubmitHandler = (event) => {
         event.preventDefault();
-        // let titleErr = '';
-        // let bodyErr = '';
+        //  let titleErr = '';
+        //  let bodyErr = '';
        
         // let title = this.state.title;
         
@@ -122,7 +121,7 @@ export default class EditEvent extends React.Component {
         // }
     
     }
-    
+        
     TextFieldChangeHandler = (event) => {
         let nam = event.target.name;
         let val = event.target.value;
@@ -196,6 +195,7 @@ export default class EditEvent extends React.Component {
                             variant="outlined"
                             value={this.state.title}
                             onChange={this.TextFieldChangeHandler}
+                            onfocusout={this.validatetitle}
                             style={{
                                 width:'80%'
                             }}
@@ -275,6 +275,8 @@ export default class EditEvent extends React.Component {
                     <Grid item xs={6}>
                         <TextField
                             required
+                            type="number"
+                            InputProps={{ inputProps: { min: 0} }}
                             id="outlined-basic"
                             name="price"
                             label="Price"

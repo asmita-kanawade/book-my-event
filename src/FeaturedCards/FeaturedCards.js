@@ -26,10 +26,17 @@ export default class FeaturedEvents extends React.Component {
 
 
 
-    redirectToDisplayEvent = (event) => {
+    redirectToDisplayEvent = (item) => {
+      const queryParams = [];
+        
+      queryParams.push(encodeURIComponent("_id") + '=' + encodeURIComponent(item._id));
+     
+      const queryString = queryParams.join('&');
+      //console.log(queryString);
+      
       this.props.history.push({
-        pathname: `/show-event`,
-        state: { event: event }
+          pathname:`/show-event`,
+          search:'?' +queryString
       });
     }
   

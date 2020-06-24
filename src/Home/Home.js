@@ -3,18 +3,8 @@ import Axios from "axios";
 import FeaturedEvents from '../FeaturedCards/FeaturedCards';
 import CategoryTabs from '../Categories/CategoryTabs';
 import CarouselComponent from '../Carousel/Carousel';
-import PrimarySearchAppBar from '../searchAppBar/searchAppBar';
-import TextField from '@material-ui/core/TextField';
 import '../Home/Home.css';
-import Paper from '@material-ui/core/Paper';
-import IconButton from "@material-ui/core/IconButton";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import SearchIcon from "@material-ui/icons/Search";
-import AutoPlayCarousel from '../CarouselItemsForFeaturedEvents/AutoPlayCarousel';
-import GeneralAppBar from '../searchAppBar/GeneralAppBar';
-import CustomerAppBar from '../searchAppBar/CustomerAppBar';
-import AdminAppBar from '../searchAppBar/AdminAppBar';
-import { Grid, CircularProgress, Backdrop, Card, AppBar } from '@material-ui/core';
+import { CircularProgress, Backdrop } from '@material-ui/core';
 
 import MainAppBar from '../AppBar/AppBar';
 

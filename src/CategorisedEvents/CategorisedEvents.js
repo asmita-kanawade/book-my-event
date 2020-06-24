@@ -5,8 +5,6 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import '../FeaturedCards/FeaturedCard.css';
 import {getEventTimings} from '../Services/services'
 
@@ -45,11 +43,18 @@ export default class CategorisedEvents extends React.Component {
 
   render() {
     //console.log('see what events contain' + JSON.stringify(this.state.events));
-    const redirectToDisplayEvent = (event) => {
-      this.props.history.push({
-        pathname: `/show-event`,
-        state: { event: event }
-      });
+    const redirectToDisplayEvent = (item) => {
+      const queryParams = [];
+        
+        queryParams.push(encodeURIComponent("_id") + '=' + encodeURIComponent(item._id));
+       
+        const queryString = queryParams.join('&');
+        //console.log(queryString);
+        
+        this.props.history.push({
+            pathname:`/show-event`,
+            search:'?' +queryString
+        });
     }
     return (
       <div style={{
