@@ -78,9 +78,9 @@ export default class MyBookings extends Component {
                     return <div key={index}  className="event-cards-container">
                       <Card key={index}  className="event-cards">
                         <div>
-                        <p className='booked-event-tags'>Booking Date: {date}</p>
-                        <p className='booked-event-tags'>Booking ID: {event.id}</p>
-                        <p className='booked-event-tags'>Payment ID {event.payment_id}</p>
+                        <p className='booked-event-tags'><b>Booking Date:</b> {date}</p>
+                        <p className='booked-event-tags'><b>Booking ID:</b> {event.id}</p>
+                        <p className='booked-event-tags'><b>Payment ID:</b> {event.payment_id}</p>
                         </div>
                         <img src={event.imageUrl} id="booked-event-img" />
                         <div className='booked-event-tags-container'>

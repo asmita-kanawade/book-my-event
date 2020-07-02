@@ -3,8 +3,8 @@
     box-shadow: 1px 2px 7px 3px grey;
     /* min-height: 330px; */
  }
- .event-cards-container{
-    width: 260px;
+ .my-bookings-container .event-cards-container{
+    width: 300px;
     margin: 10px;
  }
  .my-bookings-container{
